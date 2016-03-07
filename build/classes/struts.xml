@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<package name="struts2" extends="struts-default">
+		<action name="login" class="LoginAction">
+			<result name="MANAGER">/manager/user.jsp</result>
+			<result name="STUDENT">/student/myCourse.jsp</result>
+			<result name="TEACHER">/teacher/myCourse.jsp</result>
+			<result name="CHARGE">/tCharge/homework.jsp</result>
+			<result name="FAIL">/main/main.jsp</result>
+		</action>
+	</package>
+	
+	<package name="manager" extends="struts-default" namespace="/manager">
+		<action name="register"  class="RegisterAction">
+			<result name="SUCCESS">/manager/showReg.jsp</result>
+			<result name="FAIL">/manager/showFail.jsp</result>
+		</action>
+		
+		<action name="fileHandler"  class="FileHandler">
+			<result name="success">/manager/showReg.jsp</result>
+		</action>
+		
+		<action name="teacherRegister"  class="TeacherRegister">
+			<result name="success">/manager/showReg.jsp</result>
+		</action>
+		
+		<action name="deleteUser"  class="DeleteUser">
+			<result name="success">/manager/showDel.jsp</result>
+		</action>
+		
+		<action name="deleteTea"  class="DeleteTeacher">
+			<result name="success">/manager/showDel.jsp</result>
+		</action>
+		
+		<action name="modifyStu"  class="ModifyStu">
+			<result name="success">/manager/showMod.jsp</result>
+		</action>
+		
+			<action name="modifyTea"  class="ModifyTea">
+			<result name="success">/manager/showMod.jsp</result>
+		</action>
+		
+		
+		<action name="teaching"  class="JumpTeaching">
+			<result name="success">/manager/teaching.jsp</result>
+		</action>
+		
+		<action name="user"  class="Jump">
+			<result name="success">/manager/user.jsp</result>
+		</action>
+	</package>
+
+</struts>
+

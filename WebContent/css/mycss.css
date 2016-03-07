@@ -1,0 +1,94 @@
+﻿.userblock{
+	float:left;margin-top:1%;height:260px;width:35%;border:1px solid silver;padding-left:3%
+}
+
+.smallblock{
+	height:30px;float:left;margin-left:6%;margin-top:10%
+}
+
+.courseblock{
+	height:250px;width:500px;margin:1%;border:1px solid #999999;float:left
+}
+
+.infoTxt{
+	font-size:16px;
+}
+
+.largeTxt{
+	color:#666666;
+	font-size:17px;
+}
+
+.courseInfo{
+	width:500px;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
+	;border-top:0px;margin-left:-1px
+}
+
+.smallInfo{
+	width:200px;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
+	;border-bottom:0px
+}
+
+.bigInfo{
+	width:750px;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
+	;border-bottom:0px;margin-top:-20px;margin-left:5%;float:left
+}
+
+.pieCss{
+	width:300px;height:250px;margin-left:100px;float:left;border:1px solid red
+}
+.common{
+	float:left;
+	margin-left:1%;
+	margin-top:1%;
+	height:40px;
+}
+
+.file-box{ position:relative;width:540px;margin-top:10px;margin-left:10px} 
+.uploadtxt{ height:22px; border:1px solid #cdcdcd; width:180px;} 
+.uploadbtn{ background-color:#F7f7f7; border:1px solid #CDCDCD;height:24px; width:70px;} 
+.uploadfile{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0.6);opacity: 0;width:260px; } 
+
+.a-upload {
+    padding: 4px 10px;
+    height: 30px;
+	margin-top:10px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+
+#d1{
+	width:60%;
+	height:300px;
+	margin-left:20%;
+	margin-top:15%;
+	filter: alpha(opacity=70);
+	background:#fff;
+	opacity: 0.7;
+}
