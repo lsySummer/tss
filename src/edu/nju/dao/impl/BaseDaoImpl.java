@@ -46,7 +46,7 @@ public class BaseDaoImpl implements BaseDao {
 	/** * 获取所有信息 * * @param c * * @return */
 
 	public List getAllList(Class c) {
-		String hql = "from " + c.getName();
+		String hql = "from " + c.getName()+" order by id desc";
 		Session session = getSession();
 		return session.createQuery(hql).list();
 

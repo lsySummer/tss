@@ -11,7 +11,6 @@ import javax.persistence.Table;
 public class Teacher {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	String username;
 	String password;

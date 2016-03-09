@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import edu.nju.dao.BaseDao;
 import edu.nju.dao.LoginDao;
+import edu.nju.model.Course;
 import edu.nju.model.Login;
 import edu.nju.model.Student;
 import edu.nju.model.Teacher;
+import edu.nju.model.Term;
 
 @Repository
 public class LoginDaoImpl implements LoginDao{
@@ -49,6 +51,18 @@ public class LoginDaoImpl implements LoginDao{
 	@Override
 	public List<Teacher> getTeacher() {
 		return baseDao.getAllList(Teacher.class);
+	}
+
+
+	@Override
+	public List<Term> getTerm() {
+		return baseDao.getAllList(Term.class);
+	}
+
+
+	@Override
+	public List<Course> getCourse() {
+		return baseDao.getAllList(Course.class);
 	}
 
 }

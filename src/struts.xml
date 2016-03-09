@@ -46,6 +46,10 @@
 			<result name="success">/manager/showMod.jsp</result>
 		</action>
 		
+		<action name="select"  class="SelectStu">
+			<result name="success">/manager/user.jsp</result>
+		</action>
+		
 		
 		<action name="teaching"  class="JumpTeaching">
 			<result name="success">/manager/teaching.jsp</result>
@@ -53,6 +57,26 @@
 		
 		<action name="user"  class="Jump">
 			<result name="success">/manager/user.jsp</result>
+		</action>
+		
+		<action name="addTerm"  class="AddTerm">
+			<result name="success">/manager/teaching.jsp</result>
+		</action>
+		
+		<action name="addCourse"  class="AddCourse">
+			<result name="success">/manager/teaching.jsp</result>
+		</action>
+		
+		<action name="deleteCourse"  class="AddCourse" method="deleteCourse">
+			<result name="success">/manager/teaching.jsp</result>
+		</action>
+		
+		<action name="modifyCourse"  class="AddCourse" method="modifyCourse">
+			<result name="success">/manager/teaching.jsp</result>
+		</action>
+		
+			<action name="byTerm"  class="AddCourse" method="byTerm">
+			<result name="success">/manager/teaching.jsp</result>
 		</action>
 	</package>
 

@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.dao.LoginDao;
+import edu.nju.model.Course;
 import edu.nju.model.Login;
 import edu.nju.model.Student;
 import edu.nju.model.Teacher;
+import edu.nju.model.Term;
 import edu.nju.service.LoginService;
 
 @Service
@@ -30,6 +32,16 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public List<Teacher> getTeacher() {
 		return loginDao.getTeacher();
+	}
+
+	@Override
+	public List<Term> getTerm() {
+		return loginDao.getTerm();
+	}
+
+	@Override
+	public List<Course> getCourse() {
+		return loginDao.getCourse();
 	}
 
 }

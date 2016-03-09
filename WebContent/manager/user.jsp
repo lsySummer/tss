@@ -77,10 +77,14 @@ function check(){
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          <s:form action="/manager/teaching" method="post" name='reqForm'>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="">用户管理</a></li>
+            <li class="active"><a>用户管理</a></li>
           <li><a href='javascript:document.reqForm.submit();'>教学管理</a></li>
         </ul>
           </s:form>
+          
+           <ul class="nav navbar-nav navbar-right">
+			<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a></li>      
+	    </ul>
 		
 	
      </div>
@@ -143,10 +147,24 @@ function check(){
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="panel-770889">
-		
+		<s:form method="post" action="/manager/select">
+		<div class="common">
+			<select class="form-control" name="selectBy"> 
+				<option value=0>按学号查找</option> 
+				<option value=1>按姓名查找</option> 
+			</select>
+		</div>
+			<div class="common">
+			  <input type="text" class="form-control" placeholder="Search" name="selectText">
+		</div>
+		<div class="common">
+		<input type="submit" class="btn btn-default" value="查找"/>
+		</div>
+		</s:form>
 	
 		<jsp:useBean id="stuList"
 			type="java.util.List"
+			class="java.util.ArrayList"
 			scope="request"></jsp:useBean>
 		
 		<div style="width:1000px;margin-top:1%;float:left">
@@ -177,6 +195,7 @@ function check(){
 		
 		<jsp:useBean id="teaList"
 			type="java.util.List"
+			class="java.util.ArrayList"
 			scope="request"></jsp:useBean>
 			
 		

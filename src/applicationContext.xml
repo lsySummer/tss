@@ -78,7 +78,21 @@
 		<bean id="Jump" class="edu.nju.action.manager.Jump">
 	</bean>	
 	
+		<bean id="SelectStu" class="edu.nju.action.manager.SearchStu">
+	</bean>	
+	
 		<bean id="JumpTeaching" class="edu.nju.action.manager.JumpTeaching">
+	</bean>	
+	
+		<bean id="AddTerm" class="edu.nju.action.manager.AddTerm">
+	</bean>	
+	<bean id="AddCourse" class="edu.nju.action.manager.AddCourse">
+	</bean>	
+	
+		<bean id="deleteCourse" class="edu.nju.action.manager.AddCourse">
+	</bean>	
+	
+		<bean id="modifyCourse" class="edu.nju.action.manager.AddCourse">
 	</bean>	
 	
 	<!-- 定义 Autowired 自动注入 bean -->

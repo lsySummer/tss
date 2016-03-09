@@ -20,8 +20,8 @@ public class Jump  extends BaseAction{
 	
 	public String execute() throws ServletException,IOException{
 		List<Student> stu = loginService.getStudent();
-		List<Teacher> tea = loginService.getTeacher();
 		request.setAttribute("stuList", stu);
+		List<Teacher> tea = loginService.getTeacher();
 		request.setAttribute("teaList", tea);
 		return SUCCESS;
 	}

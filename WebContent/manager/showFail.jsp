@@ -31,14 +31,20 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<s:form action="/manager/user" method="post" name='userForm'>
-					<s:form action="/manager/teaching" method="post" name='reqForm'>
-						<ul class="nav navbar-nav">
-							<li><a
-								href='javascript:document.userForm.submit();'>用户管理</a></li>
-							<li><a href='javascript:document.reqForm.submit();'>教学管理</a></li>
-						</ul>
-					</s:form>
+					<ul class="nav navbar-nav">
+						<li><a href='javascript:document.userForm.submit();'>用户管理</a></li>
+					</ul>
 				</s:form>
+				<s:form action="/manager/teaching" method="post" name='reqForm'>
+						<ul class="nav navbar-nav">
+						<li><a href='javascript:document.reqForm.submit();'>教学管理</a></li>
+						</ul>
+						
+				</s:form>
+				 <ul class="nav navbar-nav navbar-right">
+			<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a></li>      
+	    </ul>
+		
 
 			</div>
 		</div>
