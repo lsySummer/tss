@@ -66,4 +66,24 @@ public class TeacherServiceImpl implements TeacherService{
 	public String addHomework(Chowok ch) {
 		return teacherDao.addHomework(ch);
 	}
+
+	@Override
+	public String addEgpath(int cid, int shid, String path) {
+		return teacherDao.addEgpath(cid, shid, path);
+	}
+
+	@Override
+	public List<Cselect> getselectList(int cid) {
+		return teacherDao.getselectList(cid);
+	}
+
+	@Override
+	public int addShowok(Chowok ch) {
+		return teacherDao.addShowok(ch);
+	}
+
+	@Override
+	public String insertShowok(int sid, int hid) {
+		return teacherDao.insertShowok(sid, hid);
+	}
 }

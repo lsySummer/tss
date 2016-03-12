@@ -10,6 +10,7 @@ import edu.nju.dao.TeacherDao;
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Cselect;
+import edu.nju.model.Showok;
 import edu.nju.model.Student;
 
 @Repository
@@ -89,5 +90,42 @@ public class TeacherDaoImpl implements TeacherDao{
 	public String addHomework(Chowok ch) {
 		baseDao.save(ch);
 		return "success";
+	}
+	
+	@Override
+	public int addShowok(Chowok ch){
+		int cid = ch.getCid();
+		int hid = ch.getHid();
+		String str = "from Chowok s where s.cid= "+cid+" and s.hid="+hid;
+		List<Chowok> list = baseDao.find(str);
+		int id = list.get(0).getId();
+		return id;
+	}
+
+	@Override
+	public String addEgpath(int cid, int shid, String path) {
+		String str = "from Chowok s where s.cid= "+cid+" and s.hid="+shid;
+		List<Chowok> list = baseDao.find(str);
+		int id = list.get(0).getId();
+		Chowok c = (Chowok)baseDao.load(Chowok.class, id);
+		c.setEgfilepath(path);
+		baseDao.update(c);
+		return "success";
+	}
+
+	@Override
+	public List<Cselect> getselectList(int cid) {
+		String str = "from Cselect s where s.cid= "+cid;
+		List<Cselect> list = baseDao.find(str);
+		return list;
+	}
+
+	@Override
+	public String insertShowok(int sid, int hid) {
+		Showok sh = new Showok();
+		sh.setSid(sid);
+		sh.setHid(hid);
+		baseDao.save(sh);
+		return null;
 	}
 }

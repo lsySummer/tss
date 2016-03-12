@@ -91,9 +91,10 @@
 					</tr>
 				</thead>
 				<tbody>
+				  <s:iterator value="#request.selectList" >
 					<tr>
 						<td>
-							13125001
+							<s:property value="sid" />
 						</td>
 						<td>
 							90
@@ -102,18 +103,8 @@
 							在vipabc学习一年会有什么改变？看Barbie 用流利口语“秒杀”成人，立即免费体验
 						</td>
 					</tr>
-					<tr>
-						<td>
-							13125002
-						</td>
-						<td>
-							92
-						</td>
-						<td>
-							加油啊，体系结构！
-						</td>
-						
-					</tr>
+					</s:iterator>
+					
 					
 			
 				</tbody>

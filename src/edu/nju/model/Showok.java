@@ -24,6 +24,24 @@ public class Showok  implements Serializable{
 	int sid;
 	int hid;
 	int state;
+	int score;
+	String review;
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
 	public int getSid() {
 		return sid;
 	}

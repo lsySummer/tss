@@ -11,7 +11,52 @@
 <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
  <link href="<%=request.getContextPath()%>/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <title>Insert title here</title>
+
+ <script type="text/javascript">
+    function ajaxFileUpload(hid,k)
+    {
+    	document.getElementById('shid').value=hid;
+    	var file = "file"+k;
+    	$(document)
+        .ajaxStart(function(){
+            $("#loading"+k).show();
+        })//开始上传文件时显示一个图片
+        .ajaxComplete(function(){
+            $("#loading"+k).hide();
+        });//文件上传完成将图片隐藏起来
+        
+        var params = {
+             shid : $("#shid").val(),
+          };
+        $.ajaxFileUpload
+        (
+            {
+                url:'submitEg',//用于文件上传的服务器端请求地址
+                secureuri:false,//一般设置为false
+                data:params,
+                fileElementId:file,//文件上传空间的id属性  <input type="file" id="file" name="file" />
+                dataType: 'json',//返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    //从服务器返回的json中取出message中的数据,其中message为在struts2中定义的成员变量
+                    alert('上传 成功!');
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert(e);
+                }
+            }
+        )
+    }
+    
+    function f_DL(){
+        location.href="fileAction!download.action?filePath="+"D:\\apache-tomcat-7.0.41\\webapps\\ajaxFileUploadDemo\\upload\\1P5521N4-3.jpg";
+    }
+    </script>
+
 
 <script type="text/javascript">
 	function check(){
@@ -27,39 +72,13 @@
 		return true;
 	}
 	
-	function setHid(hid){
-		document.getElementById('shid').value=hid;
+	function setId(hid){
+		document.getElementById('prid').value=hid;
 		document.submitForm.action="checkHw";
 		return true;
 	}
 </script>
 
-<script type="text/javascript">
-   $(function() {
-     $("#submitEg").click(function() {
-    //提交的参数，name和inch是和struts action中对应的接收变量
-        var params = {
-    	sid:$("#asid").val(),
-           sname : $("#uname").val(),
-           cid:$("#courseId").val()
-        };
-        $.ajax({
-    type: "POST",
-    url: "submitEg",
-    data: params,
-    dataType:"text", //ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）
-    success: function(json){ 
- 	document.getElementById('assistant').innerText=document.getElementById('username').innerText;
- 	document.getElementById('asid').value='';
-    },
-    error: function(json){
-    	alert('添加失败！助教不能为选课学生！');
-     return false;
-    }
-    });
-     });
-   });
-</script>
 </head>
 <body>
 <div class="container">
@@ -102,8 +121,10 @@
 			<div style="width:100px;margin-bottom:2%;float:left;">
 			<a id="modal3" data-target="#myModal3" role="button" class="btn btn-default" data-toggle="modal" style="margin:1% 3%">新增一次作业</a>
 			</div>
+			<%int k=0;%>
 	   	<s:form method="post" id="submitForm" name="submitForm">
 			<input type="hidden" name="shid" id="shid"/>
+			<input type="hidden" name="prid" id="prid"/>
 	   <s:iterator value="#request.hlist">
 		<table class="table  table-bordered">
 				<tbody>
@@ -164,16 +185,17 @@
 						上传样例
 						</td>
 						<td>
-							<input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc" readonly>  
-							<input type="button" value="上传" class="a-upload" onclick="document.getElementById('path').click();" style="border:1px solid #ccc;background:#fff">  
-							<input type="file" id="path" style="display:none" onchange="document.getElementById('upfile').value=this.value" name="path">
-							<input type="button" class="a-upload" id="submitEg" value="提交">
+						 <img src="<%=request.getContextPath()%>/img/loading.gif" id='<%="loading"+k %>' style="display: none;"/>
+							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
+							<input type="button" value="上传" class="a-upload" onclick="document.getElementById('<%="file"+k %>').click();" style="border:1px solid #ccc;background:#fff">  
+							<input type="file" id=<%="file"+k %> style="display:none" onchange="document.getElementById('<%="upfile"+k %>').value=this.value" name="file">
+							<input type="button" class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="hid" />,'<%=k%>');">
 						</td>
 					</tr>
 					
 					<tr>
 					<td>	
-						<a href="javascript:document.submitForm.submit();" onclick="return setHid(<s:property value="hid" />)">审核助教审批</a>
+						<a href="javascript:document.submitForm.submit();" onclick="return setId(<s:property value="id" />)">审核助教审批</a>
 					</td>
 					<td>
 						助教批改完成，请审批
@@ -182,6 +204,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<%k++; %>
 		</s:iterator>
 			</s:form>	
 		</div>
@@ -264,7 +287,6 @@
 	</div>
 	<!-- /.modal-fade -->
 	</s:form>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>

@@ -18,4 +18,8 @@ public interface TeacherDao {
 	public boolean checkAssistant(String cid,String sid);
 	public List<Chowok> getHomework(int cid);
 	public String addHomework(Chowok ch);
+	public String addEgpath(int cid,int shid,String path);
+	public List<Cselect> getselectList(int cid);
+	public int addShowok(Chowok ch);
+	public String insertShowok(int sid,int hid);
 }

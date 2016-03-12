@@ -15,6 +15,15 @@ public class Chowok  implements Serializable{
 	int cid;
 	int hid;
 	String sddl;
+	String egfilepath;
+	public String getEgfilepath() {
+		return egfilepath;
+	}
+
+	public void setEgfilepath(String egfilepath) {
+		this.egfilepath = egfilepath;
+	}
+
 	public String getSddl() {
 		return sddl;
 	}

@@ -1,10 +1,13 @@
 package edu.nju.action.teacher;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import edu.nju.action.BaseAction;
 import edu.nju.model.Chowok;
+import edu.nju.model.Cselect;
 import edu.nju.service.TeacherService;
 
 @Controller
@@ -42,6 +45,12 @@ public class AddHomework extends BaseAction {
 		ch.setFormat(aformat);
 		ch.setHid(Integer.parseInt(ahid));
 		teacherService.addHomework(ch);
+		int hid = teacherService.addShowok(ch);//作业id
+		List<Cselect> sList = teacherService.getselectList(Integer.parseInt(acid));
+		for(int i=0;i<sList.size();i++){
+			String sid= sList.get(i).getSid();
+			teacherService.insertShowok(Integer.parseInt(sid),hid);
+		}
 		return SUCCESS;
 	}
 }
