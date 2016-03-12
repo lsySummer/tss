@@ -1,8 +1,6 @@
 package edu.nju.action;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +15,7 @@ import edu.nju.model.Student;
 import edu.nju.model.Teacher;
 import edu.nju.model.Term;
 import edu.nju.service.LoginService;
+import edu.nju.service.TeacherService;
 
 @Controller
 public class LoginAction extends BaseAction{
@@ -24,8 +23,12 @@ public class LoginAction extends BaseAction{
 	@Autowired
 	private LoginService loginService; 
 	
+	@Autowired
+	private TeacherService teacherService;
+	
 	public String execute() throws ServletException,IOException{
 		String username =(String) request.getParameter("username");
+		session.put("username", username);
 		String password = (String) request.getParameter("password");
 		request.setAttribute("username", username);
 		Login result = loginService.login(username,password);
@@ -49,7 +52,21 @@ public class LoginAction extends BaseAction{
 			session.put("courseList", cList);
 			request.setAttribute("termSelect", "0");
 			request.setAttribute("courseList", cList);
-		}
+		}else if(result.equals(Login.TEACHER)){
+			ArrayList<List<Course>> carr=new ArrayList<List<Course>>();
+			List<Term> termList = loginService.getTerm();
+			request.setAttribute("termList",termList);
+			session.put("termList", termList);
+			for(int i=0;i<termList.size();i++){
+				String term = termList.get(i).getCterm();
+				List<Course> clist=teacherService.getCoursebyterm(username, term);
+				carr.add(clist);
+			}
+			request.setAttribute("carr", carr);
+			session.put("carr", carr);
+ 		}else if(result.equals(Login.FAIL)){
+ 			request.setAttribute("error", "用户名或密码错误");
+ 		}
 		return result.toString();
 	}
 }

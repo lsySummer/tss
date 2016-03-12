@@ -1,44 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+     <%@ taglib prefix="s" uri="/struts-tags"%>
+     <%@ page language="java" import="edu.nju.model.Course"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<link href="../css/bootstrap.css" rel="stylesheet">
+<link href="../css/mycss.css" rel="stylesheet">
+<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<script src="../jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	function setForm(info){
+		if(info==1){
+		document.reqForm.action="jumpTeacher";
+		}else{
+			document.reqForm.action="jumpToCourse";
+		}
+	return true;
+}
+</script>
 </head>
 <body>
 <div class="container">
 	<div class="jumbotron" style="height:130px">
 		<h1 style="margin-top:-30px">Teaching Support System</h1>
     </div>
-
+     <%Course c = (Course)request.getAttribute("course");
+    	String hid = (String)request.getAttribute("shid");
+    %>
+<s:form  method="post" name='reqForm'>
   <ul class="breadcrumb">
 		<li>
-			<a href="myCourse.html">我的课程</a> <span class="divider">/</span>
+			<a href="javascript:document.reqForm.submit();" onclick="setForm(1)">我的课程</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="homework.html">J2EE与中间件</a><span class="divider">/</span>
+			<a href="javascript:document.reqForm.submit();" onclick="setForm(2)"><%=c.getCname() %>></a><span class="divider">/</span>
 		</li>
 		<li class="active">
 			审核助教审批
 		</li>
-		<a href="../common/user.html" style="float:right">lsy13
-		<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
-		</a>
+		<li class="dropdown" style="float:right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="../common/user.html">haoran Wang
+				<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
+				</a></li>
+                <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>
+      
+              </ul>
+            </li>	
 	</ul>
+	</s:form>
 	
 	
 	<div class="smallInfo"><b>Course Navigation</b></div>
-	<div style="width:200px;border:1px solid #999999;;float:left">
+	<div style="width:20%;border:1px solid #999999;;float:left">
+	<s:form action="teacher/jumpToCourse" method="post" name='toCourse'>
 	<ul class="nav nav-pills nav-stacked">
-	   <li><a href="course.html">课程管理</a></li>
-	   <li class="active"><a href="homework.html">作业管理</a></li>
-	   
+	   <li><a href="javascript:document.toCourse.submit();">课程管理</a></li>
 	</ul>
+	</s:form>
+	<s:form action="/teacher/jumpHomework" method="post" name='toHomework'>
+	<ul class="nav nav-pills nav-stacked">
+	   <li class="active"><a href="javascript:document.toHomework.submit();">作业管理</a></li>
+	 </ul>
+	</s:form>
 	</div>
 
 	
-<div style="width:700px;margin:0% 5%;float:left">
+<div style="width:70%;margin-left:5%;float:left">
 	
 	
 	<div style="margin-top:2%;float:left;width:800px">

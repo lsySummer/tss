@@ -95,6 +95,38 @@
 		<bean id="modifyCourse" class="edu.nju.action.manager.AddCourse">
 	</bean>	
 	
+		<bean id="ToCourse" class="edu.nju.action.teacher.ToCourse">
+	</bean>	
+	
+		<bean id="ToCourseInfo" class="edu.nju.action.teacher.CourseInfo">
+	</bean>	
+	
+		<bean id="AddAssistant" class="edu.nju.action.teacher.AddAssistant">
+	</bean>	
+	
+		<bean id="JumpTeacher" class="edu.nju.action.teacher.JumpTeacher">
+	</bean>	
+	
+		<bean id="JumpHomework" class="edu.nju.action.teacher.JumpHomework">
+	</bean>
+	
+		<bean id="ModifyInfo" class="edu.nju.action.teacher.SaveInfo">
+	</bean>	
+	
+		<bean id="JumpToCourse" class="edu.nju.action.teacher.JumpToCourse">
+	</bean>
+	
+		<bean id="AddSelect" class="edu.nju.action.teacher.AddSelect">
+	</bean>	
+	
+		<bean id="AddHomework" class="edu.nju.action.teacher.AddHomework">
+	</bean>	
+	
+		<bean id="SubmitEg" class="edu.nju.action.teacher.SubmitEg">
+	</bean>	
+		<bean id="CheckHw" class="edu.nju.action.teacher.CheckHw">
+	</bean>	
+	
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />

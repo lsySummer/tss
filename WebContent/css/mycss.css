@@ -39,12 +39,12 @@ height:230px;width:900px;margin:1%;border:1px solid #999999;float:left;margin-le
 }
 
 .smallInfo{
-	width:200px;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
+	width:20%;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
 	;border-bottom:0px
 }
 
 .bigInfo{
-	width:750px;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
+	width:75%;height:20px;background:#f5f5f5; color:#000;border:1px solid #999999;text-align:center
 	;border-bottom:0px;margin-top:-20px;margin-left:5%;float:left
 }
 

@@ -14,20 +14,20 @@ public class Chowok  implements Serializable{
 	private int id;  
 	int cid;
 	int hid;
-	Date sddl;
-	public Date getSddl() {
+	String sddl;
+	public String getSddl() {
 		return sddl;
 	}
 
-	public void setSddl(Date sddl) {
+	public void setSddl(String sddl) {
 		this.sddl = sddl;
 	}
 
-	public Date getAddl() {
+	public String getAddl() {
 		return addl;
 	}
 
-	public void setAddl(Date addl) {
+	public void setAddl(String addl) {
 		this.addl = addl;
 	}
 
@@ -56,19 +56,28 @@ public class Chowok  implements Serializable{
 	}
 
 	public String getEva() {
-		return eva;
+		return comment;
 	}
 
-	public void setEva(String eva) {
-		this.eva = eva;
+	public void setEva(String comment) {
+		this.comment = comment;
 	}
 
-	Date addl;
+	String addl;
 	String format;
 	int score;
 	int dif;
-	String eva;
+	String comment;
+	String info;
 	
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	public int getId(){
 		return id;
 	}

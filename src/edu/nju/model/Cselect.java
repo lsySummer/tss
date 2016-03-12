@@ -22,12 +22,12 @@ public class Cselect implements Serializable{
 		this.id = id;
 	}
 	
-	int sid;
+	String sid;
 	int cid;
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
-	public void setSid(int sid) {
+	public void setSid(String sid) {
 		this.sid = sid;
 	}
 	public int getCid() {

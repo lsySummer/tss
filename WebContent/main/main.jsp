@@ -4,12 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
 
-<link href="../css/mycss.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/mycss.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Teaching Support System</title>
+<script type="text/javascript">
+	var msg = "${requestScope.error}";
+	if (msg != "") {
+		alert(msg);
+	}
+</script>
 </head>
 <body style="background-image: url('../img/main3.jpg'); background-size: cover; background-repeat: no-repeat; width: 100%; height: 100%; background-attachment: fixed;">
 	<div id="d1">

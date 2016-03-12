@@ -119,7 +119,6 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public List<Course> getCourse(String term) {
 		String str = "from Course s where s.term=\'"+term+"\'";
-		System.out.println(str);
 		List<Course> list = baseDao.find(str);
 		return list;
 	}

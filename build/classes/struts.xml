@@ -79,6 +79,57 @@
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
 	</package>
+	
+	<package name="teacher" extends="struts-default" namespace="/teacher">
+		<action name="course"  class="ToCourse">
+			<result name="success">/teacher/course.jsp</result>
+		</action>
+		
+		<action name="jumpTeacher"  class="JumpTeacher">
+			<result name="success">/teacher/myCourse.jsp</result>
+		</action>
+		
+		<action name="jumpHomework"  class="JumpHomework">
+			<result name="success">/teacher/homework.jsp</result>
+		</action>
+		
+		<action name="jumpToCourse"  class="JumpToCourse">
+			<result name="success">/teacher/course.jsp</result>
+		</action>
+		
+		<action name="addHomework"  class="AddHomework" method="addHomework">
+			<result type="chain" name="success">jumpHomework</result>
+		</action>
+		
+		<action name="checkHw"  class="CheckHw" method="checkHw">
+			<result name="success">/teacher/score.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="teacherAjax" extends="json-default" namespace="/teacher">
+	
+	<action name="searchAssis"  class="ToCourseInfo" method="searchAssis">
+			 <result type="json"></result>
+		</action>
+		
+		<action name="addAssis"  class="AddAssistant" method="addAssis">
+			 <result type="json"></result>
+		</action>
+		
+		<action name="save"  class="ModifyInfo" method="saveInfo">
+			 <result type="json"></result>
+		</action>
+		
+		<action name="addSelect"  class="AddSelect" method="addSelect">
+			 <result type="json"></result>
+		</action>
+		
+		<action name="submitEg"  class="SubmitEg" method="submitEg">
+			 <result type="json"></result>
+		</action>
+		
+	</package>
 
 </struts>
 

@@ -1,9 +1,6 @@
 package edu.nju.model;
 
 import java.io.Serializable;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +12,24 @@ public class Course implements Serializable {
 	@Id
 
 	private int id;
+	private String info;
+	private String book;
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public String getBook() {
+		return book;
+	}
+
+	public void setBook(String book) {
+		this.book = book;
+	}
 
 	public String gettname() {
 		return tname;
