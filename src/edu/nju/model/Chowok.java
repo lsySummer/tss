@@ -16,6 +16,25 @@ public class Chowok  implements Serializable{
 	int hid;
 	String sddl;
 	String egfilepath;
+	private String failReason;
+	private int failTime;
+	
+	public String getFailReason() {
+		return failReason;
+	}
+
+	public void setFailReason(String failReason) {
+		this.failReason = failReason;
+	}
+
+	public int getFailTime() {
+		return failTime;
+	}
+
+	public void setFailTime(int failTime) {
+		this.failTime = failTime;
+	}
+	
 	public String getEgfilepath() {
 		return egfilepath;
 	}
@@ -64,11 +83,11 @@ public class Chowok  implements Serializable{
 		this.dif = dif;
 	}
 
-	public String getEva() {
+	public String getComment() {
 		return comment;
 	}
 
-	public void setEva(String comment) {
+	public void setComment(String comment) {
 		this.comment = comment;
 	}
 

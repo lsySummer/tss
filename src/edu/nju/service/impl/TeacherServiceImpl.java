@@ -9,6 +9,7 @@ import edu.nju.dao.TeacherDao;
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Cselect;
+import edu.nju.model.Showok;
 import edu.nju.model.Student;
 import edu.nju.service.TeacherService;
 
@@ -83,7 +84,23 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public String insertShowok(int sid, int hid) {
+	public String insertShowok(String sid, int hid) {
 		return teacherDao.insertShowok(sid, hid);
+	}
+
+	@Override
+	public Showok getOneShowok(String sid, int hid) {
+		Showok sh = teacherDao.getOneShowok(sid, hid);
+		return sh;
+	}
+
+	@Override
+	public String addFailReason(int prid,String failReason) {
+		return teacherDao.addFailReason(prid,failReason);
+	}
+
+	@Override
+	public String addReview(int prid, String review) {
+		return teacherDao.addReview(prid, review);
 	}
 }

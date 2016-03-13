@@ -5,6 +5,7 @@ import java.util.List;
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Cselect;
+import edu.nju.model.Showok;
 import edu.nju.model.Student;
 
 public interface TeacherDao {
@@ -21,5 +22,8 @@ public interface TeacherDao {
 	public String addEgpath(int cid,int shid,String path);
 	public List<Cselect> getselectList(int cid);
 	public int addShowok(Chowok ch);
-	public String insertShowok(int sid,int hid);
+	public String insertShowok(String sid,int hid);
+	public Showok getOneShowok(String sid,int hid);
+	public String addFailReason(int prid,String failReason);
+	public String addReview(int prid,String review);
 }

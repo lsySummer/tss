@@ -127,6 +127,12 @@
 		<bean id="CheckHw" class="edu.nju.action.teacher.CheckHw">
 	</bean>	
 	
+		<bean id="FailReason" class="edu.nju.action.teacher.FailReason">
+	</bean>	
+	
+			<bean id="PublishScore" class="edu.nju.action.teacher.PublishScore">
+	</bean>	
+	
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />

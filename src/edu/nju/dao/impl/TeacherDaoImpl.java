@@ -121,11 +121,45 @@ public class TeacherDaoImpl implements TeacherDao{
 	}
 
 	@Override
-	public String insertShowok(int sid, int hid) {
+	public String insertShowok(String sid, int hid) {
 		Showok sh = new Showok();
 		sh.setSid(sid);
 		sh.setHid(hid);
 		baseDao.save(sh);
+		return null;
+	}
+
+	@Override
+	public Showok getOneShowok(String sid, int hid) {
+		String str = "from Showok s where s.sid="+sid+" and s.hid="+hid;
+		List<Showok> list = baseDao.find(str);
+		return list.get(0);
+	}
+
+	@Override
+	public String addFailReason(int prid,String failReason) {
+		Chowok sh = (Chowok)baseDao.load(Chowok.class, prid);
+		sh.setFailReason(failReason);
+		int failTime = sh.getFailTime();
+		failTime++;
+		sh.setFailTime(failTime);
+		baseDao.update(sh);
+		return null;
+	}
+
+	@Override
+	public String addReview(int prid, String review) {
+		Chowok sh = (Chowok)baseDao.load(Chowok.class, prid);
+		sh.setComment(review);
+		baseDao.update(sh);
+		int pid = sh.getId();
+		String str = "from Showok s where s.hid="+pid;
+		List<Showok> list = baseDao.find(str);
+		for(int i=0;i<list.size();i++){
+			Showok showok = list.get(i);
+			showok.setpScore(showok.getScore());
+			baseDao.update(showok);
+		}
 		return null;
 	}
 }

@@ -21,6 +21,52 @@
 	return true;
 }
 </script>
+<script type="text/javascript">
+   $(function() {
+     $("#fail").click(function() {
+ 
+    //提交的参数，name和inch是和struts action中对应的接收变量
+        var params = {
+        failReason : $("#failReason").val()
+        };
+        $.ajax({
+    type: "POST",
+    url: "failReason",
+    data: params,
+    dataType:"text", //ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）
+    success: function(json){ 
+    	alert('已发送！');
+    },
+    error: function(json){
+     return false;
+    }
+    });
+     });
+   });
+</script>
+<script type="text/javascript">
+   $(function() {
+     $("#pScore").click(function() {
+ 
+    //提交的参数，name和inch是和struts action中对应的接收变量
+        var params = {
+        review : $("#review").val()
+        };
+        $.ajax({
+    type: "POST",
+    url: "publishScore",
+    data: params,
+    dataType:"text", //ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）
+    success: function(json){ 
+    	alert('已发布！');
+    },
+    error: function(json){
+     return false;
+    }
+    });
+     });
+   });
+</script>
 </head>
 <body>
 <div class="container">
@@ -91,16 +137,16 @@
 					</tr>
 				</thead>
 				<tbody>
-				  <s:iterator value="#request.selectList" >
+				  <s:iterator value="#request.shList" >
 					<tr>
 						<td>
 							<s:property value="sid" />
 						</td>
 						<td>
-							90
+							<s:property value="score" />
 						</td>
 						<td>
-							在vipabc学习一年会有什么改变？看Barbie 用流利口语“秒杀”成人，立即免费体验
+							<s:property value="review" />
 						</td>
 					</tr>
 					</s:iterator>
@@ -120,7 +166,6 @@
 	
 </div>
 
-<form class="form-horizontal" id="formAction" action="" method="post">
 	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<input type="hidden" value="" name="acId" id="acId">
@@ -133,7 +178,7 @@
 				<div class="modal-body">
 	
 				<span class="infoTxt" style="float:left;margin-top:1%;margin-left:3%;vertical-align:top;display:block;">理由：</span>
-				<textarea name="word" style="width:450px;height:70px"></textarea>
+				<textarea id="failReason" name="failReason" style="width:450px;height:70px"></textarea>
 			
 				
 				<input type="hidden" id="dtp_input2" value="" /><br/>
@@ -142,7 +187,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消
 					</button>
-					<button type="submit" class="btn btn-primary" >
+					<button id="fail" class="btn btn-primary"  data-dismiss="modal">
 						发送给助教</button>
 				</div>
 			</div>
@@ -150,9 +195,7 @@
 		<!-- /.modal-content -->
 	</div>
 	<!-- /.modal-fade -->
-</form>
 
-<form class="form-horizontal" id="formAction" action="" method="post">
 	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<input type="hidden" value="" name="acId" id="acId">
@@ -165,7 +208,7 @@
 				<div class="modal-body">
 	
 				<span class="infoTxt" style="float:left;margin-top:1%;margin-left:3%;vertical-align:top;display:block;">总体点评：</span>
-				<textarea name="word" style="width:450px;height:70px"></textarea>
+				<textarea name="review" id="review" style="width:450px;height:70px"></textarea>
 			
 				
 				<input type="hidden" id="dtp_input2" value="" /><br/>
@@ -174,7 +217,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消
 					</button>
-					<button type="submit" class="btn btn-primary" >
+					<button type="submit" class="btn btn-primary" data-dismiss="modal" id="pScore">
 						发布成绩</button>
 				</div>
 			</div>
@@ -182,7 +225,6 @@
 		<!-- /.modal-content -->
 	</div>
 	<!-- /.modal-fade -->
-</form>
 	
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="../js/bootstrap.js"></script>

@@ -15,6 +15,9 @@ public class Course implements Serializable {
 	private String info;
 	private String book;
 
+
+	
+
 	public String getInfo() {
 		return info;
 	}

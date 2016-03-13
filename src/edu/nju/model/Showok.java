@@ -21,10 +21,18 @@ public class Showok  implements Serializable{
 	public void setId(int id){
 		this.id = id;
 	}
-	int sid;
+	String sid;
 	int hid;
 	int state;
 	int score;
+	int pScore;
+	public int getpScore() {
+		return pScore;
+	}
+
+	public void setpScore(int pScore) {
+		this.pScore = pScore;
+	}
 	String review;
 	public int getScore() {
 		return score;
@@ -42,10 +50,10 @@ public class Showok  implements Serializable{
 		this.review = review;
 	}
 
-	public int getSid() {
+	public String getSid() {
 		return sid;
 	}
-	public void setSid(int sid) {
+	public void setSid(String sid) {
 		this.sid = sid;
 	}
 	public int getHid() {

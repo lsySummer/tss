@@ -125,6 +125,14 @@
 			 <result type="json"></result>
 		</action>
 		
+			<action name="failReason"  class="FailReason" method="failReason">
+			 <result type="json"></result>
+		</action>
+	
+	<action name="publishScore"  class="PublishScore" method="publishScore">
+			 <result type="json"></result>
+		</action>
+		
 		<action name="submitEg"  class="SubmitEg">
 			 <result type="json" name="success">
 			 	 <param name="contentType">

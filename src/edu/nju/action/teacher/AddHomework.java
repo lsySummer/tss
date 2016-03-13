@@ -49,7 +49,7 @@ public class AddHomework extends BaseAction {
 		List<Cselect> sList = teacherService.getselectList(Integer.parseInt(acid));
 		for(int i=0;i<sList.size();i++){
 			String sid= sList.get(i).getSid();
-			teacherService.insertShowok(Integer.parseInt(sid),hid);
+			teacherService.insertShowok(sid,hid);
 		}
 		return SUCCESS;
 	}
