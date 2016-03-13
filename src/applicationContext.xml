@@ -49,90 +49,108 @@
 	</bean>
 
 	<bean id="LoginAction" class="edu.nju.action.LoginAction">
-	</bean>	
-	
+	</bean>
+
 	<bean id="RegisterAction" class="edu.nju.action.manager.RegisterAction">
-	</bean>	
-	
+	</bean>
+
 	<bean id="FileHandler" class="edu.nju.action.manager.StudentRegister">
-	</bean>	
-	
+	</bean>
+
 	<bean id="TeacherRegister" class="edu.nju.action.manager.TeacherRegister">
-	</bean>	
-	
+	</bean>
+
 	<bean id="DeleteUser" class="edu.nju.action.manager.DeleteUser">
-	</bean>	
-	
+	</bean>
+
 	<bean id="ModifyStu" class="edu.nju.action.manager.ModifyStu">
-	</bean>	
-	
+	</bean>
+
 	<bean id="SearchStu" class="edu.nju.action.manager.SearchStu">
-	</bean>	
-	
-		<bean id="ModifyTea" class="edu.nju.action.manager.ModifyTea">
-	</bean>	
-	
-		<bean id="DeleteTeacher" class="edu.nju.action.manager.DeleteTeacher">
-	</bean>	
-	
-		<bean id="Jump" class="edu.nju.action.manager.Jump">
-	</bean>	
-	
-		<bean id="SelectStu" class="edu.nju.action.manager.SearchStu">
-	</bean>	
-	
-		<bean id="JumpTeaching" class="edu.nju.action.manager.JumpTeaching">
-	</bean>	
-	
-		<bean id="AddTerm" class="edu.nju.action.manager.AddTerm">
-	</bean>	
+	</bean>
+
+	<bean id="ModifyTea" class="edu.nju.action.manager.ModifyTea">
+	</bean>
+
+	<bean id="DeleteTeacher" class="edu.nju.action.manager.DeleteTeacher">
+	</bean>
+
+	<bean id="Jump" class="edu.nju.action.manager.Jump">
+	</bean>
+
+	<bean id="SelectStu" class="edu.nju.action.manager.SearchStu">
+	</bean>
+
+	<bean id="JumpTeaching" class="edu.nju.action.manager.JumpTeaching">
+	</bean>
+
+	<bean id="AddTerm" class="edu.nju.action.manager.AddTerm">
+	</bean>
 	<bean id="AddCourse" class="edu.nju.action.manager.AddCourse">
-	</bean>	
-	
-		<bean id="deleteCourse" class="edu.nju.action.manager.AddCourse">
-	</bean>	
-	
-		<bean id="modifyCourse" class="edu.nju.action.manager.AddCourse">
-	</bean>	
-	
-		<bean id="ToCourse" class="edu.nju.action.teacher.ToCourse">
-	</bean>	
-	
-		<bean id="ToCourseInfo" class="edu.nju.action.teacher.CourseInfo">
-	</bean>	
-	
-		<bean id="AddAssistant" class="edu.nju.action.teacher.AddAssistant">
-	</bean>	
-	
-		<bean id="JumpTeacher" class="edu.nju.action.teacher.JumpTeacher">
-	</bean>	
-	
-		<bean id="JumpHomework" class="edu.nju.action.teacher.JumpHomework">
+	</bean>
+
+	<bean id="deleteCourse" class="edu.nju.action.manager.AddCourse">
+	</bean>
+
+	<bean id="modifyCourse" class="edu.nju.action.manager.AddCourse">
+	</bean>
+
+	<bean id="ToCourse" class="edu.nju.action.teacher.ToCourse">
+	</bean>
+
+	<bean id="ToCourseInfo" class="edu.nju.action.teacher.CourseInfo">
+	</bean>
+
+	<bean id="AddAssistant" class="edu.nju.action.teacher.AddAssistant">
+	</bean>
+
+	<bean id="JumpTeacher" class="edu.nju.action.teacher.JumpTeacher">
+	</bean>
+
+	<bean id="JumpHomework" class="edu.nju.action.teacher.JumpHomework">
+	</bean>
+
+	<bean id="ModifyInfo" class="edu.nju.action.teacher.SaveInfo">
+	</bean>
+
+	<bean id="JumpToCourse" class="edu.nju.action.teacher.JumpToCourse">
+	</bean>
+
+	<bean id="AddSelect" class="edu.nju.action.teacher.AddSelect">
+	</bean>
+
+	<bean id="AddHomework" class="edu.nju.action.teacher.AddHomework">
+	</bean>
+
+	<bean id="SubmitEg" class="edu.nju.action.teacher.SubmitEg">
+	</bean>
+	<bean id="CheckHw" class="edu.nju.action.teacher.CheckHw">
+	</bean>
+
+	<bean id="FailReason" class="edu.nju.action.teacher.FailReason">
+	</bean>
+
+	<bean id="PublishScore" class="edu.nju.action.teacher.PublishScore">
+	</bean>
+
+	<bean id="SHomework" class="edu.nju.action.student.SHomework">
+	</bean>
+
+	<bean id="AHomework" class="edu.nju.action.student.AHomework">
+	</bean>
+
+	<bean id="JumpStudent" class="edu.nju.action.student.StudentJump">
+	</bean>
+
+	<bean id="JumpToHomework" class="edu.nju.action.student.StudentJump">
+	</bean>
+
+	<bean id="JumpToComment" class="edu.nju.action.student.StudentJump">
 	</bean>
 	
-		<bean id="ModifyInfo" class="edu.nju.action.teacher.SaveInfo">
-	</bean>	
-	
-		<bean id="JumpToCourse" class="edu.nju.action.teacher.JumpToCourse">
+	<bean id="JumpToInfo" class="edu.nju.action.student.StudentJump">
 	</bean>
-	
-		<bean id="AddSelect" class="edu.nju.action.teacher.AddSelect">
-	</bean>	
-	
-		<bean id="AddHomework" class="edu.nju.action.teacher.AddHomework">
-	</bean>	
-	
-		<bean id="SubmitEg" class="edu.nju.action.teacher.SubmitEg">
-	</bean>	
-		<bean id="CheckHw" class="edu.nju.action.teacher.CheckHw">
-	</bean>	
-	
-		<bean id="FailReason" class="edu.nju.action.teacher.FailReason">
-	</bean>	
-	
-			<bean id="PublishScore" class="edu.nju.action.teacher.PublishScore">
-	</bean>	
-	
+
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
@@ -146,7 +164,8 @@
 			<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
-	<!-- 定义切面，在edu.nju.onlinestock.service包及子包中所有以Service结尾的方法中,执行有关的hibernate session的事务操作 -->
+	<!-- 定义切面，在edu.nju.onlinestock.service包及子包中所有以Service结尾的方法中,执行有关的hibernate 
+		session的事务操作 -->
 	<aop:config>
 		<!-- 只对业务逻辑层实施事务 -->
 		<aop:pointcut id="serviceOperation"

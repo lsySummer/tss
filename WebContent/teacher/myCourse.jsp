@@ -70,7 +70,7 @@
 	<li class="dropdown" style="float:right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="../common/user.html">haoran Wang
+                <li><a href="../common/user.html"><%=request.getAttribute("username") %>>
 				<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
 				</a></li>
                 <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>

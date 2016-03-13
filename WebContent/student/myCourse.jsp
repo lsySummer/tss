@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+        <%@ taglib prefix="s" uri="/struts-tags"%>
+    <%@ page language="java" import="java.text.SimpleDateFormat"%>
+    <%@ page language="java" import="java.util.*"%>
+      <%@ page language="java" import="edu.nju.model.Term"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/mycss.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-<script src="../jquery/jquery-1.8.3.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/mycss.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
 
 <style type="text/css">
     /* Custom Styles */
@@ -45,6 +49,18 @@
         top: 30px; /* Set the top position of pinned element */
     }
 </style>
+<script  type="text/javascript">
+	function setValue(id,i,k){
+		document.getElementById('hiddenCourseId').value=id;
+		var signal = document.getElementById('ifAs'+i+'_'+k).value;
+		if(signal=='0'){
+			document.reqForm.action="<%=request.getContextPath()%>/student/aHomework";
+		}else{
+			document.reqForm.action="<%=request.getContextPath()%>/student/sHomework";
+		}
+		return true;
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body data-spy="scroll" data-target="#myScrollspy">
@@ -52,27 +68,41 @@
 	<div class="jumbotron" style="height:130px">
 		<h1 style="margin-top:-30px">Teaching Support System</h1>
     </div>
-
+<%String username =(String)request.getAttribute("username");  %>
   <ul class="breadcrumb">
 		<li  class="active">
 			我的课程
 		</li>
-		<a href="../common/user.html" style="float:right">lsy13
-		<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
-		</a>
+		<li class="dropdown" style="float:right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="../common/user.html"><%=username %>
+				<img src="<%=request.getContextPath()%>/img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
+				</a></li>
+                <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>
+      
+              </ul>
+            </li>	
 	</ul>
 	<div class="row">
+	<%int j = 1; %>
         <div class="col-xs-3" id="myScrollspy">
             <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                <li class="active"><a href="#section-1">2016 Spirng</a></li>
-                <li><a href="#section-2">2015 Autumn</a></li>
-                <li><a href="#section-3">2015 Spring</a></li>
-                <li><a href="#section-4">2014 Autumn</a></li>
-               
+            <s:iterator value="#request.termList" id='carr'>
+                <li><a href="#section-<%=j%>"><s:property value="cterm" /></a></li>
+                <%j++; %>
+             </s:iterator>  
             </ul>
         </div>
+         
+        <%List<Term> term = (List<Term>)request.getAttribute("termList"); %>
          <div class="col-xs-9">
-            <h2 id="section-1">2016 Spirng</h2>
+          <s:form method="post" name="reqForm">
+			<input type="hidden" name="hiddenCourseId" id="hiddenCourseId"/>
+         <%int k = 1; %>
+           <s:iterator value="#request.carr" id='carr'>
+          
+            <h2 id="section-<%=k%>"><%=term.get(k-1).getCterm() %></h2>
 			<table class="table">
 				<thead>
 					<tr>
@@ -94,67 +124,67 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr> 
-						<td>
-							C1012
-						</td>
-						<td>
-							<a href="assistant.html">体系结构</a>
-						</td>
-						<td>
-							<a href="../common/user.html">张贺</a>
-						</td>
-						<td>
-							担任助教
-						</td>
-						<td>
-							开设中
-						</td>
+					<%int i = 0; %>
+						<s:iterator value="#carr" id='clist'>
+						<tr>
+							<td><s:property value="#clist.cid" /></td>
+							
+							<td><a href="javascript:document.reqForm.submit();" onclick="return setValue('<s:property value="#clist.id" />',<%=i%>,<%=k%>);"><s:property value="#clist.cname" /></a></td>
+							
+							<td><s:property value="#clist.tname" /></td>
+							
+							<td>
+							<s:if test="#clist.aname==#request.username">担任助教
+							<input type="hidden" id=<%="ifAs"+i+"_"+k %> value=0>
+							</s:if>
+							<s:else>
+							<input type="hidden" id=<%="ifAs"+i+"_"+k %> value=1>
+							<s:property value="#clist.aname" /></s:else>
+							</td>
+							
+							<td>
+								<input type="hidden" id=<%="startdate"+i+"_"+k %> value='<s:property value="#clist.startDate" />'/>
+								<input type="hidden" id=<%="enddate"+i +"_"+k%> value='<s:property value="#clist.endDate" />'/>
+								<input type="text" id=<%="st"+i+"_"+k %> style="border:0;" readonly/>
+							</td>
+						</tr>
+							<script type="text/javascript">
+						var startDate = document.getElementById('startdate'+'<%=i%>'+'_'+'<%=k%>').value;
+						var endDate = document.getElementById('enddate'+'<%=i%>'+'_'+'<%=k%>').value;
+						var myDate = new Date();
+						var todaytimes = myDate.getTime();
 						
-					</tr>
-					<tr class="success"> 
-						<td>
-							C1011
-						</td>
-						<td>
-							<a href="myHomework.html">J2EE与中间件</a>
-						</td>
-						<td>
-							<a href="../common/user.html">王浩然</a>
-						</td>
-						<td>
-							<a href="../common/user.html">Denis</a>
-						</td>	
-						<td>
-							已关闭
-						</td>
-					</tr>
-					
+					    var arr = startDate.split(" ");
+					    var starttime = new Date(arr[0], arr[1]-1, arr[2]);
+					    var starttimes = starttime.getTime();
+					   
+					    var arrs = endDate.split(" ");
+					    var endtime = new Date(arrs[0], arrs[1]-1, arrs[2]);
+					    var endtimes = endtime.getTime();
+						if(todaytimes>=starttimes&&todaytimes<=endtimes){
+							document.getElementById('st'+'<%=i%>'+'_'+'<%=k%>').value='开设中';
+						
+						}else if(todaytimes>endtimes){
+							document.getElementById('st'+'<%=i%>'+'_'+'<%=k%>').value='已关闭';
+						}else{
+							document.getElementById('st'+'<%=i%>'+'_'+'<%=k%>').value='未开始';
+							
+						}
+						</script>
+					<%i++; %>
+						</s:iterator>
 				</tbody>
 			</table>
 			<hr>
-            <h2 id="section-2">2015 Autumn</h2>
-            <p>Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.</p>
-            <p>Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</p>
-            <hr>
-            <h2 id="section-3">2015 Spring</h2>
-            <p>Integer pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id, tincidunt sit amet mauris.</p>
-            <p>Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget ante rutrum adipiscing. Cras interdum ipsum mattis, tempus mauris vel, semper ipsum. Duis sed dolor ut enim lobortis pellentesque ultricies ac ligula. Pellentesque convallis elit nisi, id vulputate ipsum ullamcorper ut. Cras ac pulvinar purus, ac viverra est. Suspendisse potenti. Integer pellentesque neque et elementum tempus. Curabitur bibendum in ligula ut rhoncus.</p>
-            <p>Quisque pharetra velit id velit iaculis pretium. Nullam a justo sed ligula porta semper eu quis enim. Pellentesque pellentesque, metus at facilisis hendrerit, lectus velit facilisis leo, quis volutpat turpis arcu quis enim. Nulla viverra lorem elementum interdum ultricies. Suspendisse accumsan quam nec ante mollis tempus. Morbi vel accumsan diam, eget convallis tellus. Suspendisse potenti.</p>
-            <hr>
-            <h2 id="section-4">2014 Autumn</h2>
-            <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-            <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</p>
-            <p>Phasellus fermentum, neque sit amet sodales tempor, enim ante interdum eros, eget luctus ipsum eros ut ligula. Nunc ornare erat quis faucibus molestie. Proin malesuada consequat commodo. Mauris iaculis, eros ut dapibus luctus, massa enim elementum purus, sit amet tristique purus purus nec felis. Morbi vestibulum sapien eget porta pulvinar. Nam at quam diam. Proin rhoncus, felis elementum accumsan dictum, felis nisi vestibulum tellus, et ultrices risus felis in orci. Quisque vestibulum sem nisl, vel congue leo dictum nec. Cras eget est at velit sagittis ullamcorper vel et lectus. In hac habitasse platea dictumst. Etiam interdum iaculis velit, vel sollicitudin lorem feugiat sit amet. Etiam luctus, quam sed sodales aliquam, lorem libero hendrerit urna, faucibus rhoncus massa nibh at felis. Curabitur ac tempus nulla, ut semper erat. Vivamus porta ullamcorper sem, ornare egestas mauris facilisis id.</p>
-            <p>Ut ut risus nisl. Fusce porttitor eros at magna luctus, non congue nulla eleifend. Aenean porttitor feugiat dolor sit amet facilisis. Pellentesque venenatis magna et risus commodo, a commodo turpis gravida. Nam mollis massa dapibus urna aliquet, quis iaculis elit sodales. Sed eget ornare orci, eu malesuada justo. Nunc lacus augue, dictum quis dui id, lacinia congue quam. Nulla sem sem, aliquam nec dolor ac, tempus convallis nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla suscipit convallis iaculis. Quisque eget commodo ligula. Praesent leo dui, facilisis quis eleifend in, aliquet vitae nunc. Suspendisse fermentum odio ac massa ultricies pellentesque. Fusce eu suscipit massa.</p>
-            <hr>
-           
+			 <%k++; %>
+			 </s:iterator>  
+			   </s:form>
         </div>
     </div>
 </div>
 	
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="../js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 	
 </body>
 </html>

@@ -15,137 +15,163 @@
 			<result name="FAIL">/main/main.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="manager" extends="struts-default" namespace="/manager">
-		<action name="register"  class="RegisterAction">
+		<action name="register" class="RegisterAction">
 			<result name="SUCCESS">/manager/showReg.jsp</result>
 			<result name="FAIL">/manager/showFail.jsp</result>
 		</action>
-		
-		<action name="fileHandler"  class="FileHandler">
+
+		<action name="fileHandler" class="FileHandler">
 			<result name="success">/manager/showReg.jsp</result>
 		</action>
-		
-		<action name="teacherRegister"  class="TeacherRegister">
+
+		<action name="teacherRegister" class="TeacherRegister">
 			<result name="success">/manager/showReg.jsp</result>
 		</action>
-		
-		<action name="deleteUser"  class="DeleteUser">
+
+		<action name="deleteUser" class="DeleteUser">
 			<result name="success">/manager/showDel.jsp</result>
 		</action>
-		
-		<action name="deleteTea"  class="DeleteTeacher">
+
+		<action name="deleteTea" class="DeleteTeacher">
 			<result name="success">/manager/showDel.jsp</result>
 		</action>
-		
-		<action name="modifyStu"  class="ModifyStu">
+
+		<action name="modifyStu" class="ModifyStu">
 			<result name="success">/manager/showMod.jsp</result>
 		</action>
-		
-			<action name="modifyTea"  class="ModifyTea">
+
+		<action name="modifyTea" class="ModifyTea">
 			<result name="success">/manager/showMod.jsp</result>
 		</action>
-		
-		<action name="select"  class="SelectStu">
+
+		<action name="select" class="SelectStu">
 			<result name="success">/manager/user.jsp</result>
 		</action>
-		
-		
-		<action name="teaching"  class="JumpTeaching">
+
+
+		<action name="teaching" class="JumpTeaching">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
-		
-		<action name="user"  class="Jump">
+
+		<action name="user" class="Jump">
 			<result name="success">/manager/user.jsp</result>
 		</action>
-		
-		<action name="addTerm"  class="AddTerm">
+
+		<action name="addTerm" class="AddTerm">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
-		
-		<action name="addCourse"  class="AddCourse">
+
+		<action name="addCourse" class="AddCourse">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
-		
-		<action name="deleteCourse"  class="AddCourse" method="deleteCourse">
+
+		<action name="deleteCourse" class="AddCourse" method="deleteCourse">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
-		
-		<action name="modifyCourse"  class="AddCourse" method="modifyCourse">
+
+		<action name="modifyCourse" class="AddCourse" method="modifyCourse">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
-		
-			<action name="byTerm"  class="AddCourse" method="byTerm">
+
+		<action name="byTerm" class="AddCourse" method="byTerm">
 			<result name="success">/manager/teaching.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="teacher" extends="struts-default" namespace="/teacher">
-		<action name="course"  class="ToCourse">
+		<action name="course" class="ToCourse">
 			<result name="success">/teacher/course.jsp</result>
 		</action>
-		
-		<action name="jumpTeacher"  class="JumpTeacher">
+
+		<action name="jumpTeacher" class="JumpTeacher">
 			<result name="success">/teacher/myCourse.jsp</result>
 		</action>
-		
-		<action name="jumpHomework"  class="JumpHomework">
+
+		<action name="jumpHomework" class="JumpHomework">
 			<result name="success">/teacher/homework.jsp</result>
 		</action>
-		
-		<action name="jumpToCourse"  class="JumpToCourse">
+
+		<action name="jumpToCourse" class="JumpToCourse">
 			<result name="success">/teacher/course.jsp</result>
 		</action>
-		
-		<action name="addHomework"  class="AddHomework" method="addHomework">
+
+		<action name="addHomework" class="AddHomework" method="addHomework">
 			<result type="chain" name="success">jumpHomework</result>
 		</action>
-		
-		<action name="checkHw"  class="CheckHw" method="checkHw">
+
+		<action name="checkHw" class="CheckHw" method="checkHw">
 			<result name="success">/teacher/score.jsp</result>
 		</action>
-		
+
 	</package>
-	
+
 	<package name="teacherAjax" extends="json-default" namespace="/teacher">
-	
-	<action name="searchAssis"  class="ToCourseInfo" method="searchAssis">
-			 <result type="json"></result>
+
+		<action name="searchAssis" class="ToCourseInfo" method="searchAssis">
+			<result type="json"></result>
+		</action>
+
+		<action name="addAssis" class="AddAssistant" method="addAssis">
+			<result type="json"></result>
+		</action>
+
+		<action name="save" class="ModifyInfo" method="saveInfo">
+			<result type="json"></result>
+		</action>
+
+		<action name="addSelect" class="AddSelect" method="addSelect">
+			<result type="json"></result>
+		</action>
+
+		<action name="failReason" class="FailReason" method="failReason">
+			<result type="json"></result>
+		</action>
+
+		<action name="publishScore" class="PublishScore" method="publishScore">
+			<result type="json"></result>
+		</action>
+
+		<action name="submitEg" class="SubmitEg">
+			<result type="json" name="success">
+				<param name="contentType">
+					text/html
+				</param>
+			</result>
+			<result type="json" name="error">
+				<param name="contentType">
+					text/html
+				</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="student" extends="struts-default" namespace="/student">
+		<action name="sHomework" class="SHomework">
+			<result name="success">/student/myHomework.jsp</result>
+		</action>
+
+		<action name="aHomework" class="AHomework">
+			<result name="success">/student/assistant.jsp</result>
+		</action>
+
+		<action name="jumpStudent" class="JumpStudent">
+			<result name="success">/student/myCourse.jsp</result>
+		</action>
+
+		<action name="jumpToHomework" class="JumpToHomework" method="jumpToHomework">
+			<result name="success">/student/assignment.jsp</result>
+		</action>
+
+		<action name="jumpToComment" class="JumpToComment" method="jumpToComment">
+			<result name="success">/student/total.jsp</result>
 		</action>
 		
-		<action name="addAssis"  class="AddAssistant" method="addAssis">
-			 <result type="json"></result>
+		<action name="jumpToInfo" class="JumpToInfo" method="jumpToInfo">
+			<result name="success">/student/myHomework.jsp</result>
 		</action>
-		
-		<action name="save"  class="ModifyInfo" method="saveInfo">
-			 <result type="json"></result>
-		</action>
-		
-		<action name="addSelect"  class="AddSelect" method="addSelect">
-			 <result type="json"></result>
-		</action>
-		
-			<action name="failReason"  class="FailReason" method="failReason">
-			 <result type="json"></result>
-		</action>
-	
-	<action name="publishScore"  class="PublishScore" method="publishScore">
-			 <result type="json"></result>
-		</action>
-		
-		<action name="submitEg"  class="SubmitEg">
-			 <result type="json" name="success">
-			 	 <param name="contentType">
-                    text/html
-                </param>
-			 </result>
-			  <result type="json" name="error">
-                <param name="contentType">
-                    text/html
-                </param>
-            </result>
-		</action>
-		
 	</package>
 
 </struts>

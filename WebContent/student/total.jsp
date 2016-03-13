@@ -1,92 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" import="edu.nju.model.Course"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/mycss.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-<script src="../jquery/jquery-1.8.3.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/mycss.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css"
+	rel="stylesheet">
+<script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<div class="jumbotron" style="height:130px">
-		<h1 style="margin-top:-30px">Teaching Support System</h1>
-    </div>
+	<div class="container">
+		<%
+			Course c = (Course) request.getAttribute("course");
+		%>
+		<div class="jumbotron" style="height: 130px">
+			<h1 style="margin-top: -30px">Teaching Support System</h1>
+		</div>
+		<%
+			String username = (String) request.getAttribute("username");
+		%>
+		<s:form action="/student/jumpStudent" method="post" name='reqForm'>
+			<ul class="breadcrumb">
+				<li><a href="javascript:document.reqForm.submit();">我的课程</a> <span
+					class="divider">/</span></li>
+				<li class="active"><%=c.getCname()%></li>
+				<li class="dropdown" style="float: right"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown">用户信息 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="../common/user.html"><%=username%> <img
+								src="../img/portrait.jpg"
+								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
+						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
+						</li>
 
-  <ul class="breadcrumb">
-		<li>
-			<a href="myCourse.html">我的课程</a> <span class="divider">/</span>
-		</li>
-		<li class="active">
-			我的作业
-		</li>
-	</ul>
-	
-	
-	<div class="smallInfo"><b>Course Navigation</b></div>
-	<div style="width:200px;border:1px solid #999999;;float:left">
-	
-		<ul class="nav nav-pills nav-stacked">
-	   <li><a href="myHomework.html">课程介绍</a></li>
-	   <li  class="active"><a href="total.html">教师点评</a></li>
-	   <li><a href="assignment.html">作业提交</a></li>
-	  
-		</ul>
-	</div>
+					</ul></li>
+			</ul>
+		</s:form>
 
-	<div style="width:700px;margin:0% 5%;float:left">
-		<table class="table  table-bordered">
+
+		<div class="smallInfo">
+			<b>Course Navigation</b>
+		</div>
+		<div style="width: 20%; border: 1px solid #999999;; float: left">
+
+			<s:form action="student/jumpToInfo" method="post" name='toComment'>
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="javascript:document.toComment.submit();">课程介绍</a></li>
+			</ul>
+			</s:form>
+			<s:form action="student/jumpToHomework" method="post" name='toHomework'>
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="javascript:document.toHomework.submit();">作业提交</a></li>
+				</ul>
+			</s:form>
+				<ul class="nav nav-pills nav-stacked">
+					<li  class="active"><a>教师点评</a></li>
+				</ul>
+
+		</div>
+
+		<div style="width: 70%; margin: 0% 5%; float: left">
+			<table class="table  table-bordered">
 				<tbody>
 					<tr>
-						<td>
-							作业编号
-						</td>
-						<td>
-							1
-						</td>
-					
+						<td>作业编号</td>
+						<td>1</td>
+
 					</tr>
 					<tr class="success">
-						<td>
-							发布日期
-						</td>
-						<td>
-							2016/02/29
-						</td>
-						
+						<td>发布日期</td>
+						<td>2016/02/29</td>
+
 					</tr>
 					<tr>
-						<td>
-							作业点评
-						</td>
-						<td>
-							大部分学生做的很不错
-							有问题的同学可以发邮件给助教
-						</td>
-					
+						<td>作业点评</td>
+						<td>大部分学生做的很不错 有问题的同学可以发邮件给助教</td>
+
 					</tr>
 					<tr>
-						<td>
-							作业样例
-						</td>
-						<td>
-							<a>提供下载</a>
-						</td>
-					
+						<td>作业样例</td>
+						<td><a>提供下载</a></td>
+
 					</tr>
-					
+
 				</tbody>
 			</table>
-	</div>
-	
-	
-</div>
+		</div>
 
-	
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="../js/bootstrap.js"></script>
+
+	</div>
+
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@ import edu.nju.model.Student;
 import edu.nju.model.Teacher;
 import edu.nju.model.Term;
 import edu.nju.service.LoginService;
+import edu.nju.service.StudentService;
 import edu.nju.service.TeacherService;
 
 @Controller
@@ -25,6 +26,9 @@ public class LoginAction extends BaseAction{
 	
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private StudentService studentService;
 	
 	public String execute() throws ServletException,IOException{
 		String username =(String) request.getParameter("username");
@@ -66,6 +70,18 @@ public class LoginAction extends BaseAction{
 			session.put("carr", carr);
  		}else if(result.equals(Login.FAIL)){
  			request.setAttribute("error", "用户名或密码错误");
+ 		}else if(result.equals(Login.STUDENT)){
+ 			ArrayList<List<Course>> carr=new ArrayList<List<Course>>();
+			List<Term> termList = loginService.getTerm();
+			request.setAttribute("termList",termList);
+			session.put("termList", termList);
+			for(int i=0;i<termList.size();i++){
+				String term = termList.get(i).getCterm();
+				List<Course> clist=studentService.getCoursebyterm(username, term);
+				carr.add(clist);
+			}
+			request.setAttribute("carr", carr);
+			session.put("carr", carr);
  		}
 		return result.toString();
 	}

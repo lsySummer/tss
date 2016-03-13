@@ -24,8 +24,8 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public Course getTeacher(int id) {
-		return teacherDao.getTeacher(id);
+	public Course getCourse(int id) {
+		return teacherDao.getCourse(id);
 	}
 
 	@Override

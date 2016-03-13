@@ -1,28 +1,28 @@
-package edu.nju.action.teacher;
-
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.ServletException;
+package edu.nju.action.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import edu.nju.action.BaseAction;
 import edu.nju.model.Course;
-import edu.nju.model.Cselect;
+import edu.nju.service.StudentService;
 import edu.nju.service.TeacherService;
+
 @Controller
-public class ToCourse extends BaseAction{
+public class SHomework extends BaseAction{
+
+	@Autowired
+	StudentService studentService;
+	
 	@Autowired
 	TeacherService teacherService;
-	public String execute() throws ServletException,IOException{
+	
+	public String execute(){
 		int id = Integer.parseInt(request.getParameter("hiddenCourseId"));
 		Course c = teacherService.getCourse(id);
 		request.setAttribute("course", c);
 		session.put("course", c);
-		List<Cselect> sidList = teacherService.getSelect(id);
-		request.setAttribute("sidList", sidList);
+		request.setAttribute("username", session.get("username"));
 		return SUCCESS;
 	}
 }

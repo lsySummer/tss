@@ -10,7 +10,7 @@ import edu.nju.model.Student;
 
 public interface TeacherDao {
 	public List<Course> getCoursebyterm(String teacher, String term);
-	public Course getTeacher(int id);
+	public Course getCourse(int id);
 	public Student getStudent(String id);
 	public String addAssistant(String cid, String sname);
 	public String addCourseInfo(String cid,String courseInfo,String refer);

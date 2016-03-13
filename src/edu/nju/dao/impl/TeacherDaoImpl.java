@@ -26,7 +26,7 @@ public class TeacherDaoImpl implements TeacherDao{
 	}
 
 	@Override
-	public Course getTeacher(int id) {
+	public Course getCourse(int id) {
 		Course c = (Course) baseDao.load(Course.class, id);
 		return c;
 	}
