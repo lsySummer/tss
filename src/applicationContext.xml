@@ -164,12 +164,29 @@
 
 	<bean id="FileDownload" class="edu.nju.action.student.FileDownload">
 	</bean>
-	
-		<bean id="GiveScore" class="edu.nju.action.student.GiveScore">
+
+	<bean id="HwDownload" class="edu.nju.action.student.FileDownload">
+	</bean>
+
+	<bean id="GiveScore" class="edu.nju.action.student.GiveScore">
+	</bean>
+
+	<bean id="SendScore" class="edu.nju.action.student.GiveScore">
+	</bean>
+
+	<bean id="InfoAction" class="edu.nju.action.InfoAction">
+	</bean>
+
+	<bean id="TInfoAction" class="edu.nju.action.InfoAction">
 	</bean>
 	
-			<bean id="SendScore" class="edu.nju.action.student.GiveScore">
+		<bean id="ModPortrait" class="edu.nju.action.ModifyPor">
 	</bean>
+	
+			<bean id="SModPortrait" class="edu.nju.action.ModifyPor">
+	</bean>
+	
+	
 
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean

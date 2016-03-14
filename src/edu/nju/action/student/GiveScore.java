@@ -50,6 +50,7 @@ public class GiveScore extends BaseAction{
 	}
 	
 	public void setRequest(){
+		request.setAttribute("suser", session.get("suser"));
 		request.setAttribute("termList", session.get("termList"));
 		request.setAttribute("carr", session.get("carr"));
 		request.setAttribute("username", session.get("username"));

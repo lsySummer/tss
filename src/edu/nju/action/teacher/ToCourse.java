@@ -17,12 +17,14 @@ public class ToCourse extends BaseAction{
 	@Autowired
 	TeacherService teacherService;
 	public String execute() throws ServletException,IOException{
+		request.setAttribute("tuser", session.get("tuser"));
 		int id = Integer.parseInt(request.getParameter("hiddenCourseId"));
 		Course c = teacherService.getCourse(id);
 		request.setAttribute("course", c);
 		session.put("course", c);
 		List<Cselect> sidList = teacherService.getSelect(id);
 		request.setAttribute("sidList", sidList);
+		request.setAttribute("username", session.get("username"));
 		return SUCCESS;
 	}
 }

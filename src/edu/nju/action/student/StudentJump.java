@@ -93,10 +93,12 @@ public class StudentJump extends BaseAction{
 	
 	public String jumpDownload(){
 		setRequest();
+		request.setAttribute("fileName", session.get("fileName"));
 		return SUCCESS;
 	}
 	
 	public void setRequest(){
+		request.setAttribute("suser", session.get("suser"));
 		request.setAttribute("termList", session.get("termList"));
 		request.setAttribute("carr", session.get("carr"));
 		request.setAttribute("username", session.get("username"));

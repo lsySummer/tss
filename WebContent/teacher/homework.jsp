@@ -20,12 +20,13 @@
     {
     	document.getElementById('shid').value=hid;
     	var file = "file"+k;
+    	var loading = "loading"+k;
     	$(document)
         .ajaxStart(function(){
-            $("#loading"+k).show();
+            $("#loading").show();
         })//开始上传文件时显示一个图片
         .ajaxComplete(function(){
-            $("#loading"+k).hide();
+            $("#loading").hide();
         });//文件上传完成将图片隐藏起来
         
         var params = {
@@ -52,9 +53,6 @@
         )
     }
     
-    function f_DL(){
-        location.href="fileAction!download.action?filePath="+"D:\\apache-tomcat-7.0.41\\webapps\\ajaxFileUploadDemo\\upload\\1P5521N4-3.jpg";
-    }
     </script>
 
 
@@ -85,7 +83,9 @@
 	<div class="jumbotron" style="height:130px">
 		<h1 style="margin-top:-30px">Teaching Support System</h1>
     </div>
-    <%Course c = (Course)request.getAttribute("course"); %>
+    <%Course c = (Course)request.getAttribute("course"); %><%
+			String username = (String) request.getAttribute("username");
+		%>
 <s:form action="/teacher/jumpTeacher" method="post" name='reqForm'>
   <ul class="breadcrumb">
 		<li>
@@ -97,7 +97,7 @@
 		<li class="dropdown" style="float:right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="../common/user.html">haoran Wang
+                <li><a href="<%=request.getContextPath()%>/common/tinfo.jsp"><%=username %>
 				<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
 				</a></li>
                 <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>

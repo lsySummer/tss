@@ -23,12 +23,13 @@
     {
     	document.getElementById('shid').value=hid;
     	var file = "file"+k;
+    	var loading = "loading"+k;
     	$(document)
         .ajaxStart(function(){
-            $("#loading"+k).show();
+            $("#loading").show();
         })//开始上传文件时显示一个图片
         .ajaxComplete(function(){
-            $("#loading"+k).hide();
+            $("#loading").hide();
         });//文件上传完成将图片隐藏起来
         
         var params = {
@@ -176,7 +177,7 @@
 							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
 							<input type="button" id=<%="up"+k %> value="上传" class="a-upload" onclick="document.getElementById('<%="file"+k %>').click();" style="border:1px solid #ccc;background:#fff">  
 							<input type="file" id=<%="file"+k %> style="display:none" onchange="document.getElementById('<%="upfile"+k %>').value=this.value" name="file">
-							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="id" />,'<%=k%>');">
+							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="hid" />,'<%=k%>');">
 							<script type="text/javascript">
 						var ddl = document.getElementById('sddl'+'<%=k%>').value;
 						var myDate = new Date();

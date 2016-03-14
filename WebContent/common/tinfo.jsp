@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page language="java" import="edu.nju.model.Student"%>
+<%@ page language="java" import="edu.nju.model.Teacher"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%=request.getContextPath()%>/css/bootstrap.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/mycss.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css"
 	rel="stylesheet">
 <link
 	href="<%=request.getContextPath()%>/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet" media="screen">
-
-<link href="<%=request.getContextPath()%>/css/mycss.css"
-	rel="stylesheet">
 <script src="<%=request.getContextPath()%>/ajaxFile/jquery.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/ajaxFile/ajaxfileupload.js"></script>
@@ -27,7 +27,7 @@
 		});//文件上传完成将图片隐藏起来
 
 		$.ajaxFileUpload({
-			url : 'smodPortrait',//用于文件上传的服务器端请求地址
+			url : 'modPortrait',//用于文件上传的服务器端请求地址
 			secureuri : false,//一般设置为false
 			fileElementId : 'file',//文件上传空间的id属性  <input type="file" id="file" name="file" />
 			dataType : 'json',//返回值类型 一般设置为json
@@ -43,12 +43,12 @@
 		})
 	}
 </script>
+
 <script language="javascript">
 	var msg = "${requestScope.tipMessage}";
 	if (msg != "") {
 		alert(msg);
 	}
-
 	function test1(event) {
 		if (event.keyCode<48 || event.keyCode>57) {
 			window.alert("Not Number");
@@ -92,11 +92,15 @@
 		}
 		return true;
 	}
+
+	function save() {
+		return true;
+	}
 </script>
 </head>
 <body style="">
-<%
-					Student s = (Student) session.getAttribute("suser");
+	<%
+					Teacher s = (Teacher) session.getAttribute("tuser");
 				%>
 	<div class="container">
 		<div class="jumbotron" style="height: 130px">
@@ -108,8 +112,9 @@
 			<div
 				style="background-color: #aaaaab; height: 300px; width: 10px; float: left;"></div>
 			<div style="padding-left: 25%; padding-top: 5%">
-				<img src="<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>" style="width: 200px; height: 200px;"
-					id="preview"></img><br />
+				<img
+					src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>'
+					style="width: 200px; height: 200px;" id="preview"></img><br />
 			</div>
 			<form action="" method="post" enctype="multipart/form-data">
 				<div style="float: left; margin-left: 25%">
@@ -118,27 +123,29 @@
 					</a>
 				</div>
 				<div style="float: left; margin-left: 5%">
-						<input type="button" value='保存' class="a-upload"
+					<input type="button" value='保存' class="a-upload"
 						onclick="ajaxFileUpload()">
 				</div>
 			</form>
 			<br />
 
 		</div>
+
 		<div
 			style="border-top: 1px solid #aaaaab;; width: 65%; height: 450px; float: left; margin-left: 5%">
 			<div
 				style="background-color: #aaaaab; height: 450px; width: 10px; float: left;">
 			</div>
-			<s:form action="infoAction" method="post" style="padding-left: 8%">
+			<s:form action="tinfoAction" method="post" style="padding-left: 8%">
 				<h3>个人资料修改</h3>
 				<br />
+
 				<table class="table  table-bordered">
 					<tbody>
 						<tr>
 							<td><input type="hidden" value='<%=s.getId()%>' id="id"
 								name="id" /> 学号</td>
-							<td><input type="text" id="num" name="num" readonly
+							<td><input type="text" readonly
 								style="border: 0; outline: none;" value='<%=s.getNum()%>'></input>
 
 							</td>
@@ -147,7 +154,7 @@
 
 						<tr>
 							<td>姓名</td>
-							<td><input type="text" id="name" name="name" readonly
+							<td><input type="text" readonly
 								style="border: 0;; outline: none;" value='<%=s.getUsername()%>'></input>
 							</td>
 						</tr>
@@ -179,14 +186,12 @@
 					</tbody>
 				</table>
 				<button class="btn btn-primary"
-					style="margin-left: 30%; width: 80px" id="save" name="save">保存</button>
+					style="margin-left: 30%; width: 80px">保存</button>
 			</s:form>
 		</div>
 	</div>
 
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-
+	<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		document.getElementById('selectPlace').value = place;
 		document.getElementById('birthdate').value = birth;

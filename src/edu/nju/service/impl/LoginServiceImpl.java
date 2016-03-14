@@ -44,4 +44,39 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.getCourse();
 	}
 
+	@Override
+	public String getUserid(String username, int i) {
+		return loginDao.getUserid(username, i);
+	}
+
+	@Override
+	public Teacher getTuser(String username) {
+		return loginDao.getTuser(username);
+	}
+
+	@Override
+	public Student getSuser(String username) {
+		return loginDao.getSuser(username);
+	}
+
+	@Override
+	public Student updateSinfo(String id, String sex, String mail, String phone, String birth) {
+		return loginDao.updateSinfo(id, sex, mail, phone, birth);
+	}
+
+	@Override
+	public Teacher updateTinfo(String id, String sex, String mail, String phone, String birth) {
+		return loginDao.updateTinfo(id, sex, mail, phone, birth);
+	}
+
+	@Override
+	public Teacher insertPor(int id,String path) {
+		return loginDao.insertPor(id,path);
+	}
+
+	@Override
+	public Student sinsertPor(int id, String path) {
+		return loginDao.sinsertPor(id, path);
+	}
+
 }

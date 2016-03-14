@@ -94,9 +94,7 @@ public class SubmitHw extends BaseAction{
 	                }
 	            }
 	            String fileName[]=fileFileName.split("\\.");
-	            System.out.println(fileFileName+" "+fileName.length);
-	            fileFileName=sid+"_"+shid+"."+fileName[1];
-	            System.out.println("shid"+shid);
+	            fileFileName=cid+"_"+shid+"_"+sid+"."+fileName[1];
 	            studentService.addShPath(sid,Integer.parseInt(shid),fileFileName);
 	            FileInputStream inputStream = new FileInputStream(f);
 	            FileOutputStream outputStream = new FileOutputStream(path + "\\"

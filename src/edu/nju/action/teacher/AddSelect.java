@@ -31,6 +31,7 @@ public class AddSelect extends BaseAction{
 	}
 	public String addSelect(){
 		Student s = teacherService.getStudent(selectName);
+		request.setAttribute("tuser", session.get("tuser"));
 		if(s==null){return "fail";}
 		teacherService.addSelect(selectName,cid);
 		List<Cselect> sidList = teacherService.getSelect(Integer.parseInt(cid));

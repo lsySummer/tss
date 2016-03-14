@@ -61,6 +61,11 @@ public class LoginAction extends BaseAction{
 			List<Term> termList = loginService.getTerm();
 			request.setAttribute("termList",termList);
 			session.put("termList", termList);
+			Teacher s =loginService.getTuser(username);
+			String id = loginService.getUserid(username,0);
+			session.put("userid", id);
+			request.setAttribute("tuser", s);
+			session.put("tuser", s);
 			for(int i=0;i<termList.size();i++){
 				String term = termList.get(i).getCterm();
 				List<Course> clist=teacherService.getCoursebyterm(username, term);
@@ -74,6 +79,11 @@ public class LoginAction extends BaseAction{
  			ArrayList<List<Course>> carr=new ArrayList<List<Course>>();
 			List<Term> termList = loginService.getTerm();
 			request.setAttribute("termList",termList);
+			Student s =loginService.getSuser(username);
+			session.put("suser", s);
+			String id = loginService.getUserid(username,1);
+			request.setAttribute("suser", s);
+			session.put("userid", id);
 			session.put("termList", termList);
 			for(int i=0;i<termList.size();i++){
 				String term = termList.get(i).getCterm();

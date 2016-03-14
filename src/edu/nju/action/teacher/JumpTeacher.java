@@ -15,8 +15,10 @@ public class JumpTeacher extends BaseAction{
 	@Autowired
 	TeacherService teacherService;
 	public String execute() throws ServletException,IOException{
+		request.setAttribute("tuser", session.get("tuser"));
 		request.setAttribute("termList", session.get("termList"));
 		request.setAttribute("carr", session.get("carr"));
+		request.setAttribute("username", session.get("username"));
 		return SUCCESS;
 	}
 }

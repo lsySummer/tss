@@ -26,6 +26,8 @@ public class AddHomework extends BaseAction {
 	
 
 	public String addHomework(){
+		request.setAttribute("username", session.get("username"));
+		request.setAttribute("tuser", session.get("tuser"));
 		ahid=request.getParameter("ahid");
 		acid = request.getParameter("acid");
 		ascore=request.getParameter("ascore");

@@ -31,6 +31,13 @@
   　　});
 　　});
   </script>
+  
+  <script type="text/javascript">
+  
+  function ajaxSend(egpath){
+	  location.href="hwDownload.action?egpath="+egpath;
+  }
+</script>
 </head>
 <body>
 	<div class="container">
@@ -53,7 +60,7 @@
 					class="dropdown-toggle" data-toggle="dropdown">用户信息 <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="../common/user.html"><%=username%> <img
+						<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
 								src="<%=request.getContextPath()%>/img/portrait.jpg"
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
@@ -80,22 +87,16 @@
 
 			<div class="tree well">
 				<ul>
-					<li><span><i class="glyphicon glyphicon-folder-open"></i>
-							作业一</span>
+					<li>
+					<span><i class="glyphicon glyphicon-folder-open"></i>
+							作业</span>
 						<ul>
+						<s:iterator value="#request.fileName">
 							<li><span><i class="glyphicon glyphicon-leaf"></i>
-									131250129.zip</span></li>
-							<li><span><i class="glyphicon glyphicon-leaf"></i>
-									131250181.zip</span></li>
-							<li><span><i class="glyphicon glyphicon-leaf"></i>
-									131250001.zip</span></li>
-						</ul></li>
-					<li><span><i class="glyphicon glyphicon-folder-open"></i>
-							作业二</span> <a href=""></a>
-						<ul>
-							<li><span><i class="glyphicon glyphicon-leaf"></i>
-									131250181.txt</span> <a href=""></a></li>
-						</ul></li>
+									<a onclick="ajaxSend('<s:property/>')"><s:property/></a></span></li>
+						</s:iterator>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -17,6 +17,8 @@ public class CheckHw extends BaseAction{
 	@Autowired
 	TeacherService teacherService;
 	public String checkHw(){
+		request.setAttribute("username", session.get("username"));
+		request.setAttribute("tuser", session.get("tuser"));
 		String prid = request.getParameter("prid");
 		request.setAttribute("prid", prid);
 		session.put("prid", prid);

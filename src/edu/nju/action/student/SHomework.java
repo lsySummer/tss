@@ -23,6 +23,7 @@ public class SHomework extends BaseAction{
 		request.setAttribute("course", c);
 		session.put("course", c);
 		request.setAttribute("username", session.get("username"));
+		request.setAttribute("suser", session.get("suser"));
 		return SUCCESS;
 	}
 }

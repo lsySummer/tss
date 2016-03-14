@@ -18,6 +18,8 @@ public class JumpHomework extends BaseAction{
 	@Autowired
 	TeacherService teacherService;
 	public String execute() throws ServletException,IOException{
+		request.setAttribute("tuser", session.get("tuser"));
+		request.setAttribute("username", session.get("username"));
 		Course c = (Course) session.get("course");
 		request.setAttribute("course", c);
 		List<Chowok> hlist = teacherService.getHomework(c.getId());
