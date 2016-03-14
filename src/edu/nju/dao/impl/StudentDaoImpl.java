@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import edu.nju.dao.BaseDao;
 import edu.nju.dao.StudentDao;
+import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Cselect;
+import edu.nju.model.Showok;
 import edu.nju.model.Student;
 
 @Repository
@@ -41,6 +43,45 @@ public class StudentDaoImpl implements StudentDao{
 			}
 		}
 		return arr;
+	}
+
+	@Override
+	public List<Chowok> getChowokList(int cid) {
+		String str = "from Chowok s where s.cid="+cid;
+		List<Chowok> list = baseDao.find(str);
+		return list;
+	}
+
+	@Override
+	public String addShPath(String sid, int shid, String path) {
+		String str = "from Showok s where s.sid='"+sid+"' and s.hid="+shid;
+		List<Showok> list = baseDao.find(str);
+		int id = list.get(0).getId();
+		Showok c = (Showok)baseDao.load(Showok.class, id);
+		c.setHpath(path);
+		baseDao.update(c);
+		return "success";
+	}
+	
+	@Override
+	public Student getStudent(String uname) {
+		String str = "from Student s where s.username='"+uname+"'";
+		List<Student> list = baseDao.find(str);
+		return list.get(0);
+	}
+
+	@Override
+	public List<Showok> getShowokList(String sid) {
+		String str = "from Showok s where s.sid='"+sid+"'";
+		List<Showok> list = baseDao.find(str);
+		return list;
+	}
+
+	@Override
+	public List<Cselect> getSelectSid(int cid) {
+		String str = "from Cselect s where s.cid="+cid;
+		List<Cselect> list = baseDao.find(str);
+		return list;
 	}
 
 }

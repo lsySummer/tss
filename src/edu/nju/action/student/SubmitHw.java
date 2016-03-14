@@ -1,4 +1,4 @@
-package edu.nju.action.teacher;
+package edu.nju.action.student;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,18 +10,16 @@ import org.springframework.stereotype.Controller;
 
 import edu.nju.action.BaseAction;
 import edu.nju.model.Course;
-import edu.nju.service.TeacherService;
-
+import edu.nju.service.StudentService;
 @Controller
-public class SubmitEg extends BaseAction{
-	
+public class SubmitHw extends BaseAction{
 	@Autowired
-	TeacherService teacherService;
+	StudentService studentService;
 	 private File file;
 	    private String fileFileName;
 	    private String fileFileContentType;
 	    private String message = "0"; // 0格式错误 1成功(文件路径)  2失败
-	   
+	    private String filePath;
 	    private String shid;
 
 		public String getShid() {
@@ -32,7 +30,13 @@ public class SubmitEg extends BaseAction{
 			this.shid = shid;
 		}
 
-		
+		public String getFilePath() {
+	        return filePath;
+	    }
+
+	    public void setFilePath(String filePath) {
+	        this.filePath = filePath;
+	    }
 
 	    public String getMessage() {
 	        return message;
@@ -72,7 +76,9 @@ public class SubmitEg extends BaseAction{
 	    	Course c = (Course) session.get("course");
 			request.setAttribute("course", c);
 			int cid = c.getId();
-	        String path = ServletActionContext.getRequest().getRealPath("/homeworkeg");
+			String username = (String) session.get("username");
+			String sid=studentService.getStudent(username).getNum();
+	        String path = ServletActionContext.getRequest().getRealPath("/homework");
 	        File file = new File(path); // 判断文件夹是否存在,如果不存在则创建文件夹
 	        if (!file.exists()) {
 	            file.mkdir();
@@ -89,8 +95,9 @@ public class SubmitEg extends BaseAction{
 	            }
 	            String fileName[]=fileFileName.split("\\.");
 	            System.out.println(fileFileName+" "+fileName.length);
-	            fileFileName=cid+"_"+shid+"."+fileName[1];
-	            teacherService.addEgpath(cid,Integer.parseInt(shid),fileFileName);
+	            fileFileName=sid+"_"+shid+"."+fileName[1];
+	            System.out.println("shid"+shid);
+	            studentService.addShPath(sid,Integer.parseInt(shid),fileFileName);
 	            FileInputStream inputStream = new FileInputStream(f);
 	            FileOutputStream outputStream = new FileOutputStream(path + "\\"
 	                    + fileFileName);

@@ -145,7 +145,28 @@
 				</param>
 			</result>
 		</action>
+		
 
+
+	</package>
+	
+	<package name="studentAjax" extends="json-default" namespace="/student">
+		<action name="submitHw" class="SubmitHw">
+			<result type="json" name="success">
+				<param name="contentType">
+					text/html
+				</param>
+			</result>
+			<result type="json" name="error">
+				<param name="contentType">
+					text/html
+				</param>
+			</result>
+		</action>
+		
+		<action name="fileDownload" class="FileDownload" method="download">
+			<result type="json"></result>
+		</action>
 	</package>
 
 	<package name="student" extends="struts-default" namespace="/student">
@@ -168,9 +189,21 @@
 		<action name="jumpToComment" class="JumpToComment" method="jumpToComment">
 			<result name="success">/student/total.jsp</result>
 		</action>
-		
+
 		<action name="jumpToInfo" class="JumpToInfo" method="jumpToInfo">
 			<result name="success">/student/myHomework.jsp</result>
+		</action>
+		
+		<action name="jumpScore" class="JumpScore" method="jumpScore">
+			<result name="success">/student/score.jsp</result>
+		</action>
+
+		<action name="jumpDownload" class="JumpDownload" method="jumpDownload">
+			<result name="success">/student/assistant.jsp</result>
+		</action>
+		
+		<action name="giveScore" class="GiveScore" method="giveScore">
+			<result name="success">/student/score.jsp</result>
 		</action>
 	</package>
 

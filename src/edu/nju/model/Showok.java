@@ -26,6 +26,15 @@ public class Showok  implements Serializable{
 	int state;
 	int score;
 	int pScore;
+	String hpath;
+	public String getHpath() {
+		return hpath;
+	}
+
+	public void setHpath(String hpath) {
+		this.hpath = hpath;
+	}
+
 	public int getpScore() {
 		return pScore;
 	}

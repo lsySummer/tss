@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" import="edu.nju.model.Course"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/mycss.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-<script src="../jquery/jquery-1.8.3.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/mycss.css"
+	rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css"
+	rel="stylesheet">
+<script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
 
- <script type="text/javascript">
+<script type="text/javascript">
 　　$(function(){
   　　$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
   　　$('.tree li.parent_li > span').on('click', function (e) {
@@ -28,70 +33,78 @@
   </script>
 </head>
 <body>
-<div class="container">
-	<div class="jumbotron" style="height:130px">
-		<h1 style="margin-top:-30px">Teaching Support System</h1>
-    </div>
+	<div class="container">
+		<%
+			Course c = (Course) request.getAttribute("course");
+		%>
+		<div class="jumbotron" style="height: 130px">
+			<h1 style="margin-top: -30px">Teaching Support System</h1>
+		</div>
+		<%
+			String username = (String) request.getAttribute("username");
+		%>
 
-  <ul class="breadcrumb">
-		<li>
-			<a href="myCourse.html">我的课程</a> <span class="divider">/</span>
-		</li>
-		<li class="active">
-			批改作业
-		</li>
-		<a href="../common/user.html" style="float:right">lsy13
-		<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
-		</a>
-	</ul>
-	
-	
-	<div class="smallInfo"><b>Course Navigation</b></div>
-	<div style="width:200px;border:1px solid #999999;;float:left">
-	
-		<ul class="nav nav-pills nav-stacked">
-	   <li class="active"><a href="assistant.html">作业下载</a></li>
-	  <li><a href="score.html">作业评分</a></li>
-	 
-	  
-		</ul>
+		<s:form action="/student/jumpStudent" method="post" name='reqForm'>
+			<ul class="breadcrumb">
+				<li><a href="javascript:document.reqForm.submit();">我的课程</a> <span
+					class="divider">/</span></li>
+				<li class="active">批改作业</li>
+				<li class="dropdown" style="float: right"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown">用户信息 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="../common/user.html"><%=username%> <img
+								src="<%=request.getContextPath()%>/img/portrait.jpg"
+								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
+						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
+						</li>
+
+					</ul></li>
+			</ul>
+		</s:form>
+
+		<div class="smallInfo">
+			<b>Course Navigation</b>
+		</div>
+		<div style="width: 20%; border: 1px solid #999999;; float: left">
+
+		<s:form action="student/jumpScore" method="post" name='score'>
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a>作业下载</a></li>
+				<li><a href="javascript:document.score.submit();">作业评分</a></li>
+			</ul>
+		</s:form>
+		</div>
+
+		<div style="width: 70%; margin: 0% 5%; float: left">
+
+			<div class="tree well">
+				<ul>
+					<li><span><i class="glyphicon glyphicon-folder-open"></i>
+							作业一</span>
+						<ul>
+							<li><span><i class="glyphicon glyphicon-leaf"></i>
+									131250129.zip</span></li>
+							<li><span><i class="glyphicon glyphicon-leaf"></i>
+									131250181.zip</span></li>
+							<li><span><i class="glyphicon glyphicon-leaf"></i>
+									131250001.zip</span></li>
+						</ul></li>
+					<li><span><i class="glyphicon glyphicon-folder-open"></i>
+							作业二</span> <a href=""></a>
+						<ul>
+							<li><span><i class="glyphicon glyphicon-leaf"></i>
+									131250181.txt</span> <a href=""></a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+
 	</div>
 
-<div style="width:700px;margin:0% 5%;float:left">
 
-	<div class="tree well">
-    <ul>
-      <li>
-        <span><i class="glyphicon glyphicon-folder-open"></i> 作业一</span>
-        <ul>
-          <li>
-            <span><i class="glyphicon glyphicon-leaf"></i> 131250129.zip</span> 
-          </li>
-          <li>
-            <span><i class="glyphicon glyphicon-leaf"></i> 131250181.zip</span> 
-          </li>
-		    <li>
-            <span><i class="glyphicon glyphicon-leaf"></i> 131250001.zip</span> 
-          </li>
-        </ul>
-      </li>
-      <li>
-        <span><i class="glyphicon glyphicon-folder-open"></i> 作业二</span> <a href=""></a>
-        <ul>
-          <li>
-            <span><i class="glyphicon glyphicon-leaf"></i> 131250181.txt</span> <a href=""></a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
-	
-</div>
-
-	
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="../js/bootstrap.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 
 </body>
 </html>

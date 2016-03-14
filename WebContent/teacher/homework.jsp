@@ -117,7 +117,7 @@
 	</s:form> 
 	</div>
 	
-	<div style="width:75%;float:left;margin-left:5%">
+	<div style="width:70%;float:left;margin-left:5%">
 			<div style="width:100px;margin-bottom:2%;float:left;">
 			<a id="modal3" data-target="#myModal3" role="button" class="btn btn-default" data-toggle="modal" style="margin:1% 3%">新增一次作业</a>
 			</div>

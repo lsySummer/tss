@@ -13,7 +13,19 @@
 <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css"
 	rel="stylesheet">
 <script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <title>Insert title here</title>
+
+<script type="text/javascript">
+  
+  function ajaxSend(egpath){
+	  location.href="fileDownload.action?egpath="+egpath;
+  }
+
+  
+</script>
 </head>
 <body>
 	<div class="container">
@@ -36,7 +48,7 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="../common/user.html"><%=username%> <img
-								src="../img/portrait.jpg"
+								src="<%=request.getContextPath()%>/img/portrait.jpg"
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
 						</li>
@@ -52,54 +64,60 @@
 		<div style="width: 20%; border: 1px solid #999999;; float: left">
 
 			<s:form action="student/jumpToInfo" method="post" name='toComment'>
-			<ul class="nav nav-pills nav-stacked">
-				<li><a href="javascript:document.toComment.submit();">课程介绍</a></li>
-			</ul>
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="javascript:document.toComment.submit();">课程介绍</a></li>
+				</ul>
 			</s:form>
-			<s:form action="student/jumpToHomework" method="post" name='toHomework'>
+			<s:form action="student/jumpToHomework" method="post"
+				name='toHomework'>
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="javascript:document.toHomework.submit();">作业提交</a></li>
 				</ul>
 			</s:form>
-				<ul class="nav nav-pills nav-stacked">
-					<li  class="active"><a>教师点评</a></li>
-				</ul>
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a>教师点评</a></li>
+			</ul>
 
 		</div>
 
 		<div style="width: 70%; margin: 0% 5%; float: left">
-			<table class="table  table-bordered">
-				<tbody>
-					<tr>
-						<td>作业编号</td>
-						<td>1</td>
+			<input type="hidden" id="cidHid" /> <input type="hidden" id="hidHid" />
+			<input type="hidden" id="kHid" />
+			<%int k=0; %>
+			<s:iterator value="#request.hlist">
+				<table class="table  table-bordered">
+					<tbody>
+						<tr>
+							<td>作业编号</td>
+							<td><s:property value="hid" /></td>
 
-					</tr>
-					<tr class="success">
-						<td>发布日期</td>
-						<td>2016/02/29</td>
+						</tr>
+						<tr class="success">
+							<td>作业内容</td>
+							<td><s:property value="info" /></td>
 
-					</tr>
-					<tr>
-						<td>作业点评</td>
-						<td>大部分学生做的很不错 有问题的同学可以发邮件给助教</td>
+						</tr>
+						<tr>
+							<td>作业点评</td>
+							<td><s:property value="comment" /></td>
 
-					</tr>
-					<tr>
-						<td>作业样例</td>
-						<td><a>提供下载</a></td>
+						</tr>
+						<tr>
+							<td>作业样例</td>
+							<td><a id="toDown"
+								onclick="ajaxSend('<s:property value="egfilepath" />')">提供下载</a></td>
 
-					</tr>
+						</tr>
 
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</s:iterator>
 		</div>
 
 
 	</div>
 
 
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 </body>
 </html>

@@ -124,6 +124,7 @@
 
 	<bean id="SubmitEg" class="edu.nju.action.teacher.SubmitEg">
 	</bean>
+
 	<bean id="CheckHw" class="edu.nju.action.teacher.CheckHw">
 	</bean>
 
@@ -147,8 +148,24 @@
 
 	<bean id="JumpToComment" class="edu.nju.action.student.StudentJump">
 	</bean>
-	
+
 	<bean id="JumpToInfo" class="edu.nju.action.student.StudentJump">
+	</bean>
+
+	<bean id="JumpScore" class="edu.nju.action.student.StudentJump">
+	</bean>
+
+	<bean id="JumpDownload" class="edu.nju.action.student.StudentJump">
+	</bean>
+
+
+	<bean id="SubmitHw" class="edu.nju.action.student.SubmitHw">
+	</bean>
+
+	<bean id="FileDownload" class="edu.nju.action.student.FileDownload">
+	</bean>
+	
+		<bean id="GiveScore" class="edu.nju.action.student.GiveScore">
 	</bean>
 
 	<!-- 定义 Autowired 自动注入 bean -->
