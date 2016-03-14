@@ -195,7 +195,7 @@
 		</action>
 		
 		<action name="jumpScore" class="JumpScore" method="jumpScore">
-			<result name="success">/student/score.jsp</result>
+			<result name="success">/student/asHomework.jsp</result>
 		</action>
 
 		<action name="jumpDownload" class="JumpDownload" method="jumpDownload">
@@ -205,6 +205,11 @@
 		<action name="giveScore" class="GiveScore" method="giveScore">
 			<result name="success">/student/score.jsp</result>
 		</action>
+		
+		<action name="sendScore" class="SendScore" method="sendScore">
+			<result name="success">/student/score.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>

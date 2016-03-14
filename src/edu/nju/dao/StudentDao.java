@@ -13,6 +13,10 @@ public interface StudentDao {
 	public List<Chowok> getChowokList(int cid);
 	public String addShPath(String sid,int shid,String path);
 	public Student getStudent(String username);
-	public List<Showok> getShowokList(String sid);
+	public Showok getShowokList(String sid,int hid);
 	public List<Cselect> getSelectSid(int cid);
+	public String sendToTeacher(int chid,String sid,String score,String review);
+	public int getChid(int cid,int hid);
+	public List<Showok> getAssistantShowok(int chid);
+	public Chowok getAsChowok(int prid);
 }

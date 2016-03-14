@@ -143,6 +143,8 @@ public class TeacherDaoImpl implements TeacherDao{
 		int failTime = sh.getFailTime();
 		failTime++;
 		sh.setFailTime(failTime);
+		sh.setAssisSubmit(0);
+		sh.setIfpass(2);
 		baseDao.update(sh);
 		return null;
 	}
@@ -151,6 +153,7 @@ public class TeacherDaoImpl implements TeacherDao{
 	public String addReview(int prid, String review) {
 		Chowok sh = (Chowok)baseDao.load(Chowok.class, prid);
 		sh.setComment(review);
+		sh.setIfpass(1);
 		baseDao.update(sh);
 		int pid = sh.getId();
 		String str = "from Showok s where s.hid="+pid;

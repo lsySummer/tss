@@ -18,7 +18,25 @@ public class Chowok  implements Serializable{
 	String egfilepath;
 	private String failReason;
 	private int failTime;
+	private int ifpass;
+	private int assisSubmit;
 	
+	public int getAssisSubmit() {
+		return assisSubmit;
+	}
+
+	public void setAssisSubmit(int assisSubmit) {
+		this.assisSubmit = assisSubmit;
+	}
+
+	public int getIfpass() {
+		return ifpass;
+	}
+
+	public void setIfpass(int ifpass) {
+		this.ifpass = ifpass;
+	}
+
 	public String getFailReason() {
 		return failReason;
 	}

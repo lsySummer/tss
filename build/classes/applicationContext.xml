@@ -167,6 +167,9 @@
 	
 		<bean id="GiveScore" class="edu.nju.action.student.GiveScore">
 	</bean>
+	
+			<bean id="SendScore" class="edu.nju.action.student.GiveScore">
+	</bean>
 
 	<!-- 定义 Autowired 自动注入 bean -->
 	<bean

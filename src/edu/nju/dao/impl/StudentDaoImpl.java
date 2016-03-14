@@ -71,10 +71,10 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Showok> getShowokList(String sid) {
-		String str = "from Showok s where s.sid='"+sid+"'";
+	public Showok getShowokList(String sid,int hid) {
+		String str = "from Showok s where s.sid='"+sid+"' and s.hid="+hid;
 		List<Showok> list = baseDao.find(str);
-		return list;
+		return list.get(0);
 	}
 
 	@Override
@@ -84,4 +84,42 @@ public class StudentDaoImpl implements StudentDao{
 		return list;
 	}
 
+	@Override
+	public String sendToTeacher(int chid,String sid, String score, String review) {
+		String str = "from Showok s where s.hid="+chid+" and s.sid='"+sid+"'";
+		List<Showok> list = baseDao.find(str);
+		int shid = list.get(0).getId();
+		Showok sh = (Showok)baseDao.load(Showok.class, shid);
+		sh.setScore(Integer.parseInt(score));
+		sh.setReview(review);
+		baseDao.update(sh);
+		Chowok ch = (Chowok)baseDao.load(Chowok.class, chid);
+		ch.setAssisSubmit(1);
+		ch.setIfpass(0);
+		baseDao.update(ch);
+		return null;
+	}
+
+	@Override
+	public int getChid(int cid, int hid) {
+		String str = "from Chowok s where s.cid="+cid+" and s.hid="+hid;
+		List<Chowok> list = baseDao.find(str);
+		return list.get(0).getId();
+	}
+
+	@Override
+	public List<Showok> getAssistantShowok(int chid) {
+		String str = "from Showok s where s.hid="+chid;
+		List<Showok> list = baseDao.find(str);
+		return list;
+	}
+
+	@Override
+	public Chowok getAsChowok(int prid) {
+		Chowok ch = (Chowok)baseDao.load(Chowok.class, prid);
+		return ch;
+	}
+
+	
+	
 }

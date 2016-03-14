@@ -40,13 +40,33 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public List<Showok> getShowokList(String sid) {
-		return studentDao.getShowokList(sid);
+	public Showok getShowokList(String sid,int hid) {
+		return studentDao.getShowokList(sid,hid);
 	}
 
 	@Override
 	public List<Cselect> getSelectSid(int cid) {
 		return studentDao.getSelectSid(cid);
+	}
+
+	@Override
+	public String sendToTeacher(int chid,String sid, String score, String review) {
+		return studentDao.sendToTeacher(chid,sid, score, review);
+	}
+
+	@Override
+	public int getChid(int cid, int hid) {
+		return studentDao.getChid(cid, hid);
+	}
+
+	@Override
+	public List<Showok> getAssistantShowok(int chid) {
+		return studentDao.getAssistantShowok(chid);
+	}
+
+	@Override
+	public Chowok getAsChowok(int prid) {
+		return studentDao.getAsChowok(prid);
 	}
 
 }

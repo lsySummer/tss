@@ -185,6 +185,7 @@
 						上传样例
 						</td>
 						<td>
+						<input type="hidden" id=<%="assidSubmit"+k%> value=<s:property value="assisSubmit" />>
 						 <img src="<%=request.getContextPath()%>/img/loading.gif" id='<%="loading"+k %>' style="display: none;"/>
 							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
 							<input type="button" value="上传" class="a-upload" onclick="document.getElementById('<%="file"+k %>').click();" style="border:1px solid #ccc;background:#fff">  
@@ -198,7 +199,14 @@
 						<a href="javascript:document.submitForm.submit();" onclick="return setId(<s:property value="id" />)">审核助教审批</a>
 					</td>
 					<td>
-						助教批改完成，请审批
+						<script type="text/javascript">
+						var ifSubmit = document.getElementById('<%="assidSubmit"+k%>').value;
+						if(ifSubmit==0){
+							document.write("<p>助教批改尚未完成</p>");
+						}else{
+							document.write("<p><b>助教批改完成，请审批</b></p>");
+						}
+						</script>
 					</td>
 						
 					</tr>

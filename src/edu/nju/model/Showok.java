@@ -23,7 +23,6 @@ public class Showok  implements Serializable{
 	}
 	String sid;
 	int hid;
-	int state;
 	int score;
 	int pScore;
 	String hpath;
@@ -70,12 +69,6 @@ public class Showok  implements Serializable{
 	}
 	public void setHid(int hid) {
 		this.hid = hid;
-	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
 	}
 	public Showok(){
 		

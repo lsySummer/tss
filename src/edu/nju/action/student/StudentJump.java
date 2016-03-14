@@ -1,5 +1,6 @@
 package edu.nju.action.student;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,10 +29,15 @@ public class StudentJump extends BaseAction{
 		String username = (String) session.get("username");
 		String sid = studentService.getStudent(username).getNum();
 		request.setAttribute("userId", sid);
-		List<Showok> showokList = studentService.getShowokList(sid);
-		request.setAttribute("showokList", showokList);
 		Course c = (Course)session.get("course");
-		List<Chowok> hlist = studentService.getChowokList(c.getId());
+		ArrayList<Showok> showokList = new ArrayList<Showok>();
+		List<Chowok> hlist = studentService.getChowokList(c.getId());//根据课程id获得其所有作业
+		for(int i=0;i<hlist.size();i++){
+			int hid = hlist.get(i).getId();
+			Showok showok= studentService.getShowokList(sid,hid);//根据学生id和作业id获得作业
+			showokList.add(showok);
+		}
+		request.setAttribute("showokList", showokList);
 		request.setAttribute("hlist", hlist);
 		session.put("hlist", hlist);
 		int leftHw=0;
@@ -81,6 +87,7 @@ public class StudentJump extends BaseAction{
 		request.setAttribute("hlist", hlist);
 		List<Cselect> selectSidList = studentService.getSelectSid(c.getId());
 		request.setAttribute("selectSidList", selectSidList);
+		session.put("selectSidList", selectSidList);
 		return SUCCESS;
 	}
 	
