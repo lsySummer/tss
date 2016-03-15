@@ -5,6 +5,7 @@
 <%@ page language="java" import="edu.nju.model.Showok"%>
 <%@ page language="java" import="edu.nju.model.Chowok"%>
 <%@ page language="java" import="java.util.*"%>
+ <%@ page language="java" import="edu.nju.model.Student"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,6 +30,7 @@ if (msg != "") {
 	<div class="container">
 		<%
 			Course c = (Course) request.getAttribute("course");
+		Student s = (Student) session.getAttribute("suser");
 		%>
 		<div class="jumbotron" style="height: 130px">
 			<h1 style="margin-top: -30px">Teaching Support System</h1>
@@ -50,7 +52,7 @@ if (msg != "") {
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
-								src="<%=request.getContextPath()%>/img/portrait.jpg"
+								src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>'
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
 						</li>

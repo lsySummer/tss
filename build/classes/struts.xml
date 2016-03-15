@@ -210,6 +210,9 @@
 			<result name="success">/common/tinfo.jsp</result>
 		</action>
 	
+	    <action name="outPut" class="outAction">  
+            <result>/excel/InputExcel.jsp</result>  
+        </action>  
 	</package>
 
 	<package name="student" extends="struts-default" namespace="/student">

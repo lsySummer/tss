@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import java.util.List;
 
+import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Login;
 import edu.nju.model.Student;
@@ -28,4 +29,5 @@ public interface LoginDao {
 	public Teacher updateTinfo(String id,String sex,String mail,String phone,String birth);
 	public Teacher insertPor(int id,String path);
 	public Student sinsertPor(int id,String path);
+	public List<Chowok> getChowokList(int cid);
 }

@@ -4,6 +4,7 @@
 <%@ page language="java" import="edu.nju.model.Course"%>
 <%@ page language="java" import="edu.nju.model.Showok"%>
 <%@ page language="java" import="java.util.*"%>
+<%@ page language="java" import="edu.nju.model.Student"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,6 +35,7 @@
 		</div>
 		<%
 			String username = (String) request.getAttribute("username");
+		Student s = (Student) session.getAttribute("suser");
 		%>
 
 		<s:form action="/student/jumpStudent" method="post" name='reqForm' id='reqForm'>
@@ -46,7 +48,7 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
-								src="<%=request.getContextPath()%>/img/portrait.jpg"
+								src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>'
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
 						</li>
@@ -71,15 +73,24 @@
 		</div>
 		<%
 			String signal = "0";
+		
 		%>
 		<div style="width: 70%; margin-left: 5%; float: left">
 
-
+<%int leftHw=(int)request.getAttribute("leftHw"); 
+int leftAs=(int)request.getAttribute("leftAs");
+%>
 			<%
 				int k = 0;
 				String sid = (String) request.getAttribute("userId");
 				List<Showok> showokList = (List<Showok>) request.getAttribute("showokList");
 			%>
+			
+			<script type="text/javascript">
+			if(<%=leftHw%>!=0){
+			document.write('<div class="alert alert-warning alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 注意！有<%=leftHw%>个作业学生已提交！有<%=leftAs%>个作业需要批改</div>');
+			}
+			</script>
 			<s:form action="/student/giveScore" method="post" id="reqForm2" name="reqForm2">
 				<input type="hidden" name="prid" id="prid" />
 				<s:iterator value="#request.hlist">

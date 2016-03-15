@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
      <%@ taglib prefix="s" uri="/struts-tags"%>
      <%@ page language="java" import="edu.nju.model.Course"%>
+     <%@ page language="java" import="edu.nju.model.Teacher"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,6 +79,7 @@
     %>
     <%
 			String username = (String) request.getAttribute("username");
+	Teacher s = (Teacher) session.getAttribute("tuser");
 		%>
 <s:form  method="post" name='reqForm'>
   <ul class="breadcrumb">
@@ -94,7 +96,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<%=request.getContextPath()%>/common/tinfo.jsp"><%=username %>
-				<img src="../img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
+				<img src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>' style="width:30px;height:30px;margin-top:-5%"></img>
 				</a></li>
                 <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>
       

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.nju.dao.BaseDao;
 import edu.nju.dao.LoginDao;
+import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Login;
 import edu.nju.model.Student;
@@ -123,6 +124,13 @@ public class LoginDaoImpl implements LoginDao {
 		t.setHpath(path);
 		baseDao.update(t);
 		return t;
+	}
+
+	@Override
+	public List<Chowok> getChowokList(int cid) {
+		String str = "from Chowok s where s.cid=" + cid;
+		List<Chowok> list = baseDao.find(str);
+		return list;
 	}
 
 }

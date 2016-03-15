@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.dao.LoginDao;
+import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Login;
 import edu.nju.model.Student;
@@ -77,6 +78,11 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public Student sinsertPor(int id, String path) {
 		return loginDao.sinsertPor(id, path);
+	}
+
+	@Override
+	public List<Chowok> getChowokList(int cid) {
+		return loginDao.getChowokList(cid);
 	}
 
 }

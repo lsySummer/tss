@@ -41,6 +41,20 @@ public class StudentJump extends BaseAction{
 		request.setAttribute("hlist", hlist);
 		session.put("hlist", hlist);
 		int leftHw=0;
+		String todayStr=todayDate();
+		for(int i=0;i<hlist.size();i++){
+			String sddl = hlist.get(i).getSddl();
+			System.out.println(sddl);
+			if(sddl.compareTo(todayStr)>0){
+				leftHw++;
+			}
+		}
+		request.setAttribute("leftHw", leftHw);
+		session.put("hlist", hlist);
+		return SUCCESS;
+	}
+	
+	public String todayDate(){
 		Calendar cal=Calendar.getInstance();    
 		int y=cal.get(Calendar.YEAR);    
 		int m=cal.get(Calendar.MONTH)+1;    
@@ -55,16 +69,7 @@ public class StudentJump extends BaseAction{
 			date="0"+date;
 		}
 		String todayStr=year+" "+month+" "+date;
-		for(int i=0;i<hlist.size();i++){
-			String sddl = hlist.get(i).getSddl();
-			System.out.println(sddl);
-			if(sddl.compareTo(todayStr)>0){
-				leftHw++;
-			}
-		}
-		request.setAttribute("leftHw", leftHw);
-		session.put("hlist", hlist);
-		return SUCCESS;
+		return todayStr;
 	}
 	
 	public String jumpToComment(){
@@ -88,6 +93,22 @@ public class StudentJump extends BaseAction{
 		List<Cselect> selectSidList = studentService.getSelectSid(c.getId());
 		request.setAttribute("selectSidList", selectSidList);
 		session.put("selectSidList", selectSidList);
+		int leftHw=0;
+		int leftAs = 0;
+		String todayStr=todayDate();
+		for(int i=0;i<hlist.size();i++){
+			String sddl = hlist.get(i).getSddl();
+			String addl = hlist.get(i).getAddl();
+			System.out.println(sddl);
+			if(sddl.compareTo(todayStr)>0){
+				leftHw++;
+			}
+			if(addl.compareTo(todayStr)>0){
+				leftAs++;
+			}
+		}
+		request.setAttribute("leftHw", leftHw);
+		request.setAttribute("leftAs", leftAs);
 		return SUCCESS;
 	}
 	

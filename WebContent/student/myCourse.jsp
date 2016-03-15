@@ -4,6 +4,7 @@
     <%@ page language="java" import="java.text.SimpleDateFormat"%>
     <%@ page language="java" import="java.util.*"%>
       <%@ page language="java" import="edu.nju.model.Term"%>
+      <%@ page language="java" import="edu.nju.model.Student"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,7 +69,9 @@
 	<div class="jumbotron" style="height:130px">
 		<h1 style="margin-top:-30px">Teaching Support System</h1>
     </div>
-<%String username =(String)request.getAttribute("username");  %>
+<%String username =(String)request.getAttribute("username"); 
+Student s = (Student) session.getAttribute("suser");
+%>
   <ul class="breadcrumb">
 		<li  class="active">
 			我的课程
@@ -77,7 +80,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户信息 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username %>
-				<img src="<%=request.getContextPath()%>/img/portrait.jpg" style="width:30px;height:30px;margin-top:-5%"></img>
+				<img src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>' style="width:30px;height:30px;margin-top:-5%"></img>
 				</a></li>
                 <li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>  </li>
       
