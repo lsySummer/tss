@@ -30,8 +30,8 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public String addShPath(String sid, int shid, String path) {
-		return studentDao.addShPath(sid, shid, path);
+	public String addShPath(String sid, String path,String prid) {
+		return studentDao.addShPath(sid, path,prid);
 	}
 
 	@Override

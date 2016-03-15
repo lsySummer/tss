@@ -11,7 +11,7 @@ import edu.nju.model.Student;
 public interface StudentDao {
 	public List<Course> getCoursebyterm(String username,String term);
 	public List<Chowok> getChowokList(int cid);
-	public String addShPath(String sid,int shid,String path);
+	public String addShPath(String sid,String path,String prid);
 	public Student getStudent(String username);
 	public Showok getShowokList(String sid,int hid);
 	public List<Cselect> getSelectSid(int cid);

@@ -4,20 +4,24 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionSupport;
-
+import edu.nju.action.BaseAction;
+import edu.nju.model.Student;
 import edu.nju.model.Teacher;
+import edu.nju.service.LoginService;
 import edu.nju.service.ManagerService;
 
 @Controller
-public class TeacherRegister extends ActionSupport{
+public class TeacherRegister extends BaseAction{
 	@Autowired
 	ManagerService managerService;
+	@Autowired
+	LoginService loginService;
 
 	private File tupload;  
     private String tuploadFileName;  
@@ -45,6 +49,11 @@ public class TeacherRegister extends ActionSupport{
                 }catch(Exception e){
                 	return "FAIL";
                 }
+            	List<Student> stu = loginService.getStudent();
+        		request.setAttribute("stuList", stu);
+        		List<Teacher> tea = loginService.getTeacher();
+        		request.setAttribute("teaList", tea);
+        		request.setAttribute("addMessage", "添加成功！");
         return SUCCESS;  
     }
 	public File getTupload() {

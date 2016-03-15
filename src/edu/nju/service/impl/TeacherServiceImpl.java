@@ -39,7 +39,7 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public String addCourseInfo(String cid, String courseInfo, String refer) {
+	public Course addCourseInfo(String cid, String courseInfo, String refer) {
 		return teacherDao.addCourseInfo(cid, courseInfo, refer);
 	}
 

@@ -192,7 +192,12 @@ public class TaskJob extends BaseAction{
 					String UTitle = Character.toUpperCase(title.charAt(0)) + title.substring(1, title.length()); // 使其首字母大写;
 					String methodName = "get" + UTitle;
 					Method method = class_.getDeclaredMethod(methodName); // 设置要执行的方法
-					String data = method.invoke(object).toString(); // 执行该get方法,即要插入的数据
+					String data="";
+					if(method.invoke(object)==null){
+						data="";
+					}else{
+						data = method.invoke(object).toString(); // 执行该get方法,即要插入的数据
+					}
 					Cell cell = row.createCell(columnIndex);
 					cell.setCellValue(data);
 				}

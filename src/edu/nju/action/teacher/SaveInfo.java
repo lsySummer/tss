@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import edu.nju.action.BaseAction;
+import edu.nju.model.Course;
 import edu.nju.service.TeacherService;
 
 @Controller
@@ -39,7 +40,8 @@ public class SaveInfo extends BaseAction {
 	}
 
 	public String saveInfo(){
-		teacherService.addCourseInfo(cid,courseInfo,refer);
+		Course c =teacherService.addCourseInfo(cid,courseInfo,refer);
+		session.put("course", c);
 		return SUCCESS;
 	}
 }

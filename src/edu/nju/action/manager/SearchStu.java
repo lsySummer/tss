@@ -11,12 +11,15 @@ import org.springframework.stereotype.Controller;
 import edu.nju.action.BaseAction;
 import edu.nju.model.Student;
 import edu.nju.model.Teacher;
+import edu.nju.service.LoginService;
 import edu.nju.service.ManagerService;
 
 @Controller
 public class SearchStu extends BaseAction{
 	@Autowired
 	ManagerService managerService;
+	@Autowired
+	LoginService loginService;
 	public String execute() throws ServletException,IOException{
 		String selectBy = request.getParameter("selectBy");
 		request.setAttribute("teaList", session.get("teaList"));
@@ -24,12 +27,11 @@ public class SearchStu extends BaseAction{
 			String num = request.getParameter("selectText");
 			List<Student> list = managerService.search(num);
 			request.setAttribute("stuList", list);
-			return SUCCESS;
 		}else{
 			String name=request.getParameter("selectText");
-			List<Student> list = managerService.search(name);
+			List<Student> list = managerService.searchByname(name);
 			request.setAttribute("stuList", list);
-			return SUCCESS;
 		}
+		return SUCCESS;
 	}
 }

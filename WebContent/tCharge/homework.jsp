@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-<link rel="stylesheet" href="../Statistics/css/graph.css">
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/Statistics/css/graph.css">
 <meta name="robots" content="noindex,follow" />
 </head>
 <body>
@@ -31,8 +31,6 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="">课程作业情况</a></li>
             <li><a href="student.html">学生情况</a></li>
-			  
-			 
         </ul>
 		
 	    <ul class="nav navbar-nav navbar-right">
@@ -174,8 +172,9 @@ $(document).ready(function () {
 </script>
 		
 </div>
+</div>
 
 
-<script src="../js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
 </body>
 </html>

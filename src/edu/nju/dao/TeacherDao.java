@@ -13,7 +13,7 @@ public interface TeacherDao {
 	public Course getCourse(int id);
 	public Student getStudent(String id);
 	public String addAssistant(String cid, String sname);
-	public String addCourseInfo(String cid,String courseInfo,String refer);
+	public Course addCourseInfo(String cid,String courseInfo,String refer);
 	public List<Cselect> getSelect(int id);
 	public String addSelect(String sid,String cid);
 	public boolean checkAssistant(String cid,String sid);

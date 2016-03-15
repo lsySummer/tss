@@ -106,6 +106,12 @@
 		<div class="jumbotron" style="height: 130px">
 			<h1 style="margin-top: -30px">Teaching Support System</h1>
 		</div>
+		<s:form action="/teacher/jumpTeacher" method="post" name='reqForm'>
+			<ul class="breadcrumb">
+				<li><a href="javascript:document.reqForm.submit();">我的课程</a> <span
+					class="divider">/</span></li>
+			</ul>
+		</s:form>
 
 		<div
 			style="border-top: 1px solid #aaaaab; width: 30%; height: 0px; float: left;">

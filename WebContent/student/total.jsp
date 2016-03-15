@@ -46,7 +46,7 @@
 					class="dropdown-toggle" data-toggle="dropdown">用户信息 <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
+					<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
 								src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>'
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
@@ -98,13 +98,29 @@
 						</tr>
 						<tr>
 							<td>作业点评</td>
-							<td><s:property value="comment" /></td>
+							<td>
+							<script type="text/javascript">
+							if('<s:property value="comment" />'==''){
+								document.write("教师尚未上传");
+							}else{
+								document.write('<s:property value="comment" />');
+							}
+							</script>
+							</td>
 
 						</tr>
 						<tr>
 							<td>作业样例</td>
-							<td><a id="toDown"
-								onclick="ajaxSend('<s:property value="egfilepath" />')">提供下载</a></td>
+							<td>
+							<a id=<%="toDown"+k %> onclick="ajaxSend('<s:property value="egfilepath" />')">提供下载</a>
+							<script type="text/javascript">
+							if('<s:property value="egfilepath" />'==''){
+								document.write('教师尚未上传');
+								var did = 'toDown'+<%=k%>;
+								document.getElementById(did).innerHTML ="";
+							}
+							</script>
+								</td>
 
 						</tr>
 

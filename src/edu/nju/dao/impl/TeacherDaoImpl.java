@@ -47,12 +47,12 @@ public class TeacherDaoImpl implements TeacherDao{
 	}
 
 	@Override
-	public String addCourseInfo(String cid, String courseInfo, String refer) {
+	public Course addCourseInfo(String cid, String courseInfo, String refer) {
 		Course c = (Course)baseDao.load(Course.class, Integer.parseInt(cid));
 		c.setInfo(courseInfo);
 		c.setBook(refer);
 		baseDao.update(c);
-		return null;
+		return c;
 	}
 
 	@Override
@@ -125,6 +125,7 @@ public class TeacherDaoImpl implements TeacherDao{
 		Showok sh = new Showok();
 		sh.setSid(sid);
 		sh.setHid(hid);
+		sh.setReview("暂无");
 		baseDao.save(sh);
 		return null;
 	}

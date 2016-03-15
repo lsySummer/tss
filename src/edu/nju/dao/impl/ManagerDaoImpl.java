@@ -25,9 +25,9 @@ public class ManagerDaoImpl implements ManagerDao {
 		String sqlStr = "from Student s where s.num=" + snum;
 		List list = baseDao.find(sqlStr);
 		if (list.size() != 0) {
-			System.out.println("find");
 			return "FAIL";
 		} else {
+			stu.setHpath("0.jpg");
 			baseDao.save(stu);
 			return "SUCCESS";
 		}
@@ -36,6 +36,7 @@ public class ManagerDaoImpl implements ManagerDao {
 
 	@Override
 	public String regTch(Teacher tea) {
+		tea.setHpath("0.jpg");
 		baseDao.save(tea);
 		return "SUCCESS";
 	}
@@ -82,7 +83,7 @@ public class ManagerDaoImpl implements ManagerDao {
 
 	@Override
 	public List<Student> searchByname(String name) {
-		String str = "from Student s where s.name like \'%" + name + "%\'";
+		String str = "from Student s where s.username like \'%" + name + "%\'";
 		List<Student> list = baseDao.find(str);
 		return list;
 	}

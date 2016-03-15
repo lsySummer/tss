@@ -18,32 +18,31 @@
 
 	<package name="manager" extends="struts-default" namespace="/manager">
 		<action name="register" class="RegisterAction">
-			<result name="SUCCESS">/manager/showReg.jsp</result>
-			<result name="FAIL">/manager/showFail.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="fileHandler" class="FileHandler">
-			<result name="success">/manager/showReg.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="teacherRegister" class="TeacherRegister">
-			<result name="success">/manager/showReg.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="deleteUser" class="DeleteUser">
-			<result name="success">/manager/showDel.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="deleteTea" class="DeleteTeacher">
-			<result name="success">/manager/showDel.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="modifyStu" class="ModifyStu">
-			<result name="success">/manager/showMod.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="modifyTea" class="ModifyTea">
-			<result name="success">/manager/showMod.jsp</result>
+			<result name="success">/manager/user.jsp</result>
 		</action>
 
 		<action name="select" class="SelectStu">

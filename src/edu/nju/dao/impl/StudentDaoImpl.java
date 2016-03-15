@@ -53,8 +53,8 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public String addShPath(String sid, int shid, String path) {
-		String str = "from Showok s where s.sid='"+sid+"' and s.hid="+shid;
+	public String addShPath(String sid,String path,String prid) {
+		String str = "from Showok s where s.sid='"+sid+"' and s.hid="+prid;
 		List<Showok> list = baseDao.find(str);
 		int id = list.get(0).getId();
 		Showok c = (Showok)baseDao.load(Showok.class, id);

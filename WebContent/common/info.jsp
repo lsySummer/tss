@@ -103,12 +103,19 @@
 			<h1 style="margin-top: -30px">Teaching Support System</h1>
 		</div>
 
+	<s:form action="/student/jumpStudent" method="post" name='reqForm'>
+			<ul class="breadcrumb">
+				<li><a href="javascript:document.reqForm.submit();">我的课程</a> <span
+					class="divider">/</span></li>
+			</ul>
+		</s:form>
+
 		<div
 			style="border-top: 1px solid #aaaaab; width: 30%; height: 0px; float: left;">
 			<div
 				style="background-color: #aaaaab; height: 300px; width: 10px; float: left;"></div>
 			<div style="padding-left: 25%; padding-top: 5%">
-				<img src="<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>" style="width: 200px; height: 200px;"
+				<img src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>' style="width: 200px; height: 200px;"
 					id="preview"></img><br />
 			</div>
 			<form action="" method="post" enctype="multipart/form-data">

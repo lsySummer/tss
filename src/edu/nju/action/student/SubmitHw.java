@@ -21,6 +21,15 @@ public class SubmitHw extends BaseAction{
 	    private String message = "0"; // 0格式错误 1成功(文件路径)  2失败
 	    private String filePath;
 	    private String shid;
+	    private String prid;
+
+		public String getPrid() {
+			return prid;
+		}
+
+		public void setPrid(String prid) {
+			this.prid = prid;
+		}
 
 		public String getShid() {
 			return shid;
@@ -95,7 +104,7 @@ public class SubmitHw extends BaseAction{
 	            }
 	            String fileName[]=fileFileName.split("\\.");
 	            fileFileName=cid+"_"+shid+"_"+sid+"."+fileName[1];
-	            studentService.addShPath(sid,Integer.parseInt(shid),fileFileName);
+	            studentService.addShPath(sid,fileFileName,prid);
 	            FileInputStream inputStream = new FileInputStream(f);
 	            FileOutputStream outputStream = new FileOutputStream(path + "\\"
 	                    + fileFileName);

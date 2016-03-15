@@ -20,9 +20,10 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
-    function ajaxFileUpload(hid,k)
+    function ajaxFileUpload(prid,k,hid)
     {
     	document.getElementById('shid').value=hid;
+    	document.getElementById('prid').value=prid;
     	var file = "file"+k;
     	var loading = "loading"+k;
     	$(document)
@@ -35,6 +36,7 @@
         
         var params = {
              shid : $("#shid").val(),
+             prid: $("#prid").val()
           };
         $.ajaxFileUpload
         (
@@ -80,7 +82,7 @@
 					class="dropdown-toggle" data-toggle="dropdown">用户信息 <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="../common/user.html"><%=username%> <img
+					<li><a href="<%=request.getContextPath()%>/common/info.jsp"><%=username%> <img
 								src='<%=getServletContext().getRealPath("/portrait")+"\\"+s.getHpath()%>'
 								style="width: 30px; height: 30px; margin-top: -5%"></img> </a></li>
 						<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a>
@@ -118,7 +120,7 @@
 		<div style="width: 70%; margin-left:5%; float: left">
 			<script type="text/javascript">
 			if(<%=leftHw%>!=0){
-				document.write('<div class="alert alert-warning alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 注意！您有<%=leftHw%>个作业尚未提交！</div>');
+				document.write('<div class="alert alert-warning alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 注意！您有<%=leftHw%>个作业尚未到截止日期！</div>');
 				}
 			</script>
 
@@ -170,7 +172,9 @@
 
 							<tr>
 								<td>作业评价</td>
-								<td><%=sh.getReview() %></td>
+								<td>
+								<%=sh.getReview() %>
+								</td>
 
 							</tr>
 							<tr>
@@ -183,7 +187,7 @@
 							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
 							<input type="button" id=<%="up"+k %> value="上传" class="a-upload" onclick="document.getElementById('<%="file"+k %>').click();" style="border:1px solid #ccc;background:#fff">  
 							<input type="file" id=<%="file"+k %> style="display:none" onchange="document.getElementById('<%="upfile"+k %>').value=this.value" name="file">
-							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="hid" />,'<%=k%>');">
+							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="id" />,'<%=k%>',<s:property value="hid" />);">
 							<script type="text/javascript">
 						var ddl = document.getElementById('sddl'+'<%=k%>').value;
 						var myDate = new Date();

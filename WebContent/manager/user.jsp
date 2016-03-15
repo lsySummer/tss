@@ -13,6 +13,22 @@
 <script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
 <script language="javascript" type="text/javascript">
 
+var msg = "${requestScope.addMessage}";
+if (msg != "") {
+	alert(msg);
+}
+
+msg = "${requestScope.deleteMessage}";
+if (msg != "") {
+	alert(msg);
+}
+
+msg = "${requestScope.modifyMessage}";
+if (msg != "") {
+	alert(msg);
+}
+
+
 function check(){
 	var num=document.getElementById("rnum").value;
 	var name = document.getElementById("rname").value;
@@ -119,7 +135,7 @@ function check(){
 		
 		<div class="userblock" style="margin-left:3%;">
 			<h3 style="margin-top:10%">批量导入注册数据</h3>
-			<h4 style="margin-top:5%">(支持txt，excel格式的文件导入)</h4>
+			<h4 style="margin-top:5%">(支持txt格式的文件导入,格式"学号 姓名 密码")</h4>
 			<s:form action="/manager/fileHandler" method="post" enctype="multipart/form-data">
 			<span class="infoTxt">学生：</span>
 			<input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc" readonly>

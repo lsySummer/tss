@@ -49,8 +49,10 @@ public class AddHomework extends BaseAction {
 		teacherService.addHomework(ch);
 		int hid = teacherService.addShowok(ch);//作业id
 		List<Cselect> sList = teacherService.getselectList(Integer.parseInt(acid));
+		System.out.println("sListsizt"+sList.size());
 		for(int i=0;i<sList.size();i++){
 			String sid= sList.get(i).getSid();
+			System.out.println("insertShowok"+sid+" "+hid);
 			teacherService.insertShowok(sid,hid);
 		}
 		return SUCCESS;
