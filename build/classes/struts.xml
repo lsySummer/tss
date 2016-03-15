@@ -222,6 +222,14 @@
 		<action name="aHomework" class="AHomework">
 			<result name="success">/student/assistant.jsp</result>
 		</action>
+		
+		<action name="seeInfo" class="SeeInfo">
+			<result name="success">/common/seeTinfo.jsp</result>
+		</action>
+		
+		<action name="seeAInfo" class="SeeAInfo">
+			<result name="success">/common/seeAinfo.jsp</result>
+		</action>
 
 		<action name="jumpStudent" class="JumpStudent">
 			<result name="success">/student/myCourse.jsp</result>

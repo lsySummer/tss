@@ -85,4 +85,14 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.getChowokList(cid);
 	}
 
+	@Override
+	public Teacher getSeeTeacher(int cid) {
+		return loginDao.getSeeTeacher(cid);
+	}
+
+	@Override
+	public Student getSeeStudent(int cid) {
+		return loginDao.getSeeStudent(cid);
+	}
+
 }

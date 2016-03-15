@@ -61,6 +61,16 @@
 		}
 		return true;
 	}
+	
+	function seeInfo(id,s){
+		if(s=='1'){
+		document.getElementById('hiddenCourseId').value=id;
+		document.reqForm.action="<%=request.getContextPath()%>/student/seeInfo";
+		}else{
+			document.getElementById('hiddenCourseId').value=id;
+			document.reqForm.action="<%=request.getContextPath()%>/student/seeAInfo";
+		}
+	}
 </script>
 <title>Insert title here</title>
 </head>
@@ -134,7 +144,7 @@ Student s = (Student) session.getAttribute("suser");
 							
 							<td><a href="javascript:document.reqForm.submit();" onclick="return setValue('<s:property value="#clist.id" />',<%=i%>,<%=k%>);"><s:property value="#clist.cname" /></a></td>
 							
-							<td><s:property value="#clist.tname" /></td>
+							<td><a href="javascript:document.reqForm.submit();" onclick="return seeInfo('<s:property value="#clist.id" />','1');"><s:property value="#clist.tname" /></a></td>
 							
 							<td>
 							<s:if test="#clist.aname==#request.username">担任助教
@@ -142,7 +152,8 @@ Student s = (Student) session.getAttribute("suser");
 							</s:if>
 							<s:else>
 							<input type="hidden" id=<%="ifAs"+i+"_"+k %> value=1>
-							<s:property value="#clist.aname" /></s:else>
+							<a href="javascript:document.reqForm.submit();" onclick="return seeInfo('<s:property value="#clist.id" />','2');"><s:property value="#clist.aname" /></a>
+							</s:else>
 							</td>
 							
 							<td>

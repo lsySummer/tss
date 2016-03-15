@@ -133,4 +133,22 @@ public class LoginDaoImpl implements LoginDao {
 		return list;
 	}
 
+	@Override
+	public Teacher getSeeTeacher(int cid) {
+		Course c = (Course) baseDao.load(Course.class, cid);
+		String tname=c.getTname();
+		String str = "from Teacher s where s.username='" + tname+"'";
+		List<Teacher> list = baseDao.find(str);
+		return list.get(0);
+	}
+
+	@Override
+	public Student getSeeStudent(int cid) {
+		Course c = (Course) baseDao.load(Course.class, cid);
+		String aname=c.getAname();
+		String str = "from Student s where s.username='" + aname+"'";
+		List<Student> list = baseDao.find(str);
+		return list.get(0);
+	}
+
 }

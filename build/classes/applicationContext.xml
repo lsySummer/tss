@@ -194,10 +194,16 @@
 	<bean id="SModPortrait" class="edu.nju.action.ModifyPor">
 	</bean>
 
-
 	<bean id="outAction" class="edu.nju.action.ExcelTest">
 	</bean>
-
+	
+	
+	<bean id="SeeInfo" class="edu.nju.action.SeeInfo">
+	</bean>
+	
+		<bean id="SeeAInfo" class="edu.nju.action.SeeAInfo">
+	</bean>
+	
 	<task:scheduled-tasks>
 		<task:scheduled ref="taskJob" method="job1" cron="0 13 22 * * ?" />
 	</task:scheduled-tasks>
