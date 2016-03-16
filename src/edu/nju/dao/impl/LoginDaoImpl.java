@@ -1,5 +1,7 @@
 package edu.nju.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,5 +152,33 @@ public class LoginDaoImpl implements LoginDao {
 		List<Student> list = baseDao.find(str);
 		return list.get(0);
 	}
+
+	@Override
+	public List<Term> getNowTerm() {
+		Calendar cal=Calendar.getInstance();    
+		int y=cal.get(Calendar.YEAR);    
+		int m=cal.get(Calendar.MONTH)+1;    
+		String signal="";
+		if(m>=8&&m<=12){
+			signal=y+" "+"Autumn";
+		}else if(m<8&&m>=2){
+			signal=y+" "+"Spring";
+		}else{
+			signal=(y-1)+"Autumn";
+		}
+		System.out.println(signal);
+		List<Term> tList = baseDao.getAllList(Term.class);
+		List<Term> nowList = new ArrayList<Term>();
+		boolean s = false;
+		for(int i=0;i<tList.size();i++){
+			String term=tList.get(i).getCterm();
+			if(term.equals(signal)||s){
+				nowList.add(tList.get(i));
+				s=true;
+			}
+		}
+		return nowList;
+	}
+	
 
 }

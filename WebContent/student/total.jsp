@@ -84,7 +84,7 @@
 			<input type="hidden" id="kHid" />
 			<%int k=0; %>
 			<s:iterator value="#request.hlist">
-				<table class="table  table-bordered">
+				<table class="table  table-bordered" style="table-layout:fixed;">
 					<tbody>
 						<tr>
 							<td>作业编号</td>

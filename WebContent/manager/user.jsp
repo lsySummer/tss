@@ -40,6 +40,25 @@ function check(){
 	return true;
 }
 
+function checkUpfile(){
+	var fileName=document.getElementById("upfile").value;
+	if(fileName==''){
+		alert('您未选择文件！');
+		return false;
+	}
+	return true;
+}
+
+function checktUpfile(){
+	var fileName=document.getElementById("upfile0").value;
+	if(fileName==''){
+		alert('您未选择文件！');
+		return false;
+	}
+	return true;
+}
+
+
 	 function setValue(num){
 			var hid = document.getElementById('acId');
 			hid.value=num;
@@ -106,21 +125,21 @@ function check(){
      </div>
 </div>
 </div>
-	<div class="userblock" style="margin-left:15%;">
+	<div class="userblock" style="margin-left:15%;background-color:#f9f9f9">
 		<h3>注册一个新用户</h3>
 		<s:form action="/manager/register" method="post" enctype="multipart/form-data">
 			<div style="float:left;width:800px;">
 				<span class="infoTxt">学号：</span>
 				<input type="text" id="rnum" name="num" 
-				style=" border: 0;border-bottom: thin solid;outline:none;"></input><br/><br/>
+				style=" border: 0;border-bottom: thin solid;outline:none;background-color:#f9f9f9"></input><br/><br/>
 				
 				<span class="infoTxt">姓名：</span>
 				<input type="text" id="rname" name="name" 
-				style=" border: 0;border-bottom: thin solid;outline:none;"></input><br/><br/>
+				style=" border: 0;border-bottom: thin solid;outline:none;background-color:#f9f9f9"></input><br/><br/>
 				
 				<span class="infoTxt">密码：</span>
 				<input type="text" id="rpass" name="pass" 
-				style=" border: 0;border-bottom: thin solid;outline:none;"></input><br/><br/>
+				style=" border: 0;border-bottom: thin solid;outline:none;background-color:#f9f9f9"></input><br/><br/>
 				
 				<span class="infoTxt">身份：</span>
 					<select name="select"> 
@@ -133,7 +152,7 @@ function check(){
 		</s:form>
 		</div>
 		
-		<div class="userblock" style="margin-left:3%;">
+		<div class="userblock" style="margin-left:3%;background-color:#f9f9f9">
 			<h3 style="margin-top:10%">批量导入注册数据</h3>
 			<h4 style="margin-top:5%">(支持txt格式的文件导入,格式"学号 姓名 密码")</h4>
 			<s:form action="/manager/fileHandler" method="post" enctype="multipart/form-data">
@@ -141,14 +160,14 @@ function check(){
 			<input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc" readonly>
 			<input type="button" value="选择" class="a-upload" onclick="path.click()" style="margin-left:5px;margin-right:5px">  
 			<input type="file" id="path" multiple style="display:none" onchange="upfile.value=this.value" name="upload">
-			<input type="submit" class="btn-info"><br/><br/>
+			<input type="submit" class="btn-info" onclick="return checkUpfile()"><br/><br/>
 			</s:form>
 			<s:form action="/manager/teacherRegister" method="post" enctype="multipart/form-data">
 			<span class="infoTxt">教师：</span>
-			<input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc" readonly>  
+			<input type="text" size="20" name="upfile0" id="upfile0" style="border:1px dotted #ccc" readonly>  
 			<input type="button" value="选择" class="a-upload" onclick="path1.click()" style="margin-left:5px;margin-right:5px">  
-			<input type="file" id="path1" multiple style="display:none" onchange="upfile.value=this.value" name="tupload">
-			<input type="submit" class="btn-info"><br/><br/>
+			<input type="file" id="path1" multiple style="display:none" onchange="upfile0.value=this.value" name="tupload">
+			<input type="submit" class="btn-info" onclick="return checktUpfile()"><br/><br/>
 			</s:form>
 		</div>
 

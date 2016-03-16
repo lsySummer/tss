@@ -95,4 +95,9 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.getSeeStudent(cid);
 	}
 
+	@Override
+	public List<Term> getNowTerm() {
+		return loginDao.getNowTerm();
+	}
+
 }

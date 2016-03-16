@@ -23,10 +23,12 @@
 
 		<action name="fileHandler" class="FileHandler">
 			<result name="success">/manager/user.jsp</result>
+			<result name="fail">/manager/user.jsp</result>
 		</action>
 
 		<action name="teacherRegister" class="TeacherRegister">
 			<result name="success">/manager/user.jsp</result>
+			<result name="fail">/manager/user.jsp</result>
 		</action>
 
 		<action name="deleteUser" class="DeleteUser">

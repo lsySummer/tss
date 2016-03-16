@@ -49,7 +49,9 @@ public class StudentRegister extends BaseAction {
             		managerService.regStu(stu);
                 	}
                 }catch(Exception e){
-                	return "FAIL";
+                	e.printStackTrace();
+                	request.setAttribute("addMessage", "添加失败！");
+                	return "fail";
                 }
             	List<Student> stu = loginService.getStudent();
         		request.setAttribute("stuList", stu);

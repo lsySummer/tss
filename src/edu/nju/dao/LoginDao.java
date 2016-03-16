@@ -14,6 +14,7 @@ public interface LoginDao {
 	public List<Student> getStudent();
 	public List<Teacher> getTeacher();
 	public List<Term> getTerm();
+	public List<Term> getNowTerm();
 	public List<Course> getCourse();
 	public String getUserid(String username, int i);
 	public Teacher getTuser(String username);

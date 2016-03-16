@@ -47,7 +47,8 @@ public class TeacherRegister extends BaseAction{
             		managerService.regTch(stu);
                 	}
                 }catch(Exception e){
-                	return "FAIL";
+                	request.setAttribute("addMessage", "添加失败！");
+                	return "fail";
                 }
             	List<Student> stu = loginService.getStudent();
         		request.setAttribute("stuList", stu);

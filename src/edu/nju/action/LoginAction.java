@@ -58,7 +58,7 @@ public class LoginAction extends BaseAction{
 			request.setAttribute("courseList", cList);
 		}else if(result.equals(Login.TEACHER)){
 			ArrayList<List<Course>> carr=new ArrayList<List<Course>>();
-			List<Term> termList = loginService.getTerm();
+			List<Term> termList = loginService.getNowTerm();
 			request.setAttribute("termList",termList);
 			session.put("termList", termList);
 			Teacher s =loginService.getTuser(username);
@@ -77,7 +77,7 @@ public class LoginAction extends BaseAction{
  			request.setAttribute("error", "用户名或密码错误");
  		}else if(result.equals(Login.STUDENT)){
  			ArrayList<List<Course>> carr=new ArrayList<List<Course>>();
-			List<Term> termList = loginService.getTerm();
+			List<Term> termList = loginService.getNowTerm();
 			request.setAttribute("termList",termList);
 			Student s =loginService.getSuser(username);
 			session.put("suser", s);

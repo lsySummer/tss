@@ -20,43 +20,51 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
 <script type="text/javascript">
-    function ajaxFileUpload(prid,k,hid)
+    function ajaxFileUpload(format,prid,k,hid)
     {
     	document.getElementById('shid').value=hid;
     	document.getElementById('prid').value=prid;
     	var file = "file"+k;
     	var loading = "loading"+k;
-    	$(document)
-        .ajaxStart(function(){
-            $("#loading").show();
-        })//开始上传文件时显示一个图片
-        .ajaxComplete(function(){
-            $("#loading").hide();
-        });//文件上传完成将图片隐藏起来
-        
-        var params = {
-             shid : $("#shid").val(),
-             prid: $("#prid").val()
-          };
-        $.ajaxFileUpload
-        (
-            {
-                url:'submitHw',//用于文件上传的服务器端请求地址
-                secureuri:false,//一般设置为false
-                data:params,
-                fileElementId:file,//文件上传空间的id属性  <input type="file" id="file" name="file" />
-                dataType: 'json',//返回值类型 一般设置为json
-                success: function (data, status)  //服务器成功响应处理函数
+    	var upFile="upfile"+k;
+    	var upName=document.getElementById(upFile).value;
+    	var strs = new Array();
+    	strs = upName.split(".");
+    	if(strs[1]==format){
+    		$(document)
+            .ajaxStart(function(){
+                $("#"+loading).show();
+            })//开始上传文件时显示一个图片
+            .ajaxComplete(function(){
+                $("#"+loading).hide();
+            });//文件上传完成将图片隐藏起来
+            
+            var params = {
+                 shid : $("#shid").val(),
+                 prid: $("#prid").val()
+              };
+            $.ajaxFileUpload
+            (
                 {
-                    //从服务器返回的json中取出message中的数据,其中message为在struts2中定义的成员变量
-                    alert('上传 成功!');
-                },
-                error: function (data, status, e)//服务器响应失败处理函数
-                {
-                    alert(e);
+                    url:'submitHw',//用于文件上传的服务器端请求地址
+                    secureuri:false,//一般设置为false
+                    data:params,
+                    fileElementId:file,//文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'json',//返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        //从服务器返回的json中取出message中的数据,其中message为在struts2中定义的成员变量
+                        alert('上传 成功!');
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
                 }
-            }
-        )
+            )
+    	}else{
+    		alert('您上传的文件格式不符合要求！');
+    	}
     }
     </script>
 </head>
@@ -134,7 +142,7 @@
 				<input type="hidden" name="prid" id="prid" />
 				<s:iterator value="#request.hlist">
 				<%Showok sh = showokList.get(k); %>
-					<table class="table  table-bordered">
+					<table class="table  table-bordered" style="table-layout:fixed;">
 						<tbody>
 							<tr>
 								<td>作业编号</td>
@@ -187,7 +195,7 @@
 							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
 							<input type="button" id=<%="up"+k %> value="上传" class="a-upload" onclick="document.getElementById('<%="file"+k %>').click();" style="border:1px solid #ccc;background:#fff">  
 							<input type="file" id=<%="file"+k %> style="display:none" onchange="document.getElementById('<%="upfile"+k %>').value=this.value" name="file">
-							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload(<s:property value="id" />,'<%=k%>',<s:property value="hid" />);">
+							<input type="button" id=<%="button"+k %> class="a-upload" value="提交" onclick="ajaxFileUpload('<s:property value="format" />',<s:property value="id" />,'<%=k%>',<s:property value="hid" />);">
 							<script type="text/javascript">
 						var ddl = document.getElementById('sddl'+'<%=k%>').value;
 						var myDate = new Date();

@@ -22,7 +22,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public String regStu(Student stu) {
 		String snum = stu.getNum();
-		String sqlStr = "from Student s where s.num=" + snum;
+		String sqlStr = "from Student s where s.num='" + snum+"'";
 		List list = baseDao.find(sqlStr);
 		if (list.size() != 0) {
 			return "FAIL";
