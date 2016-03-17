@@ -96,6 +96,8 @@ public class ManagerDaoImpl implements ManagerDao {
 
 	@Override
 	public String addCourse(Course c) {
+		c.setBook("暂无");
+		c.setAname("暂无");
 		baseDao.save(c);
 		return "success";
 	}

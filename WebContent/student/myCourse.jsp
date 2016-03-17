@@ -116,7 +116,7 @@ Student s = (Student) session.getAttribute("suser");
            <s:iterator value="#request.carr" id='carr'>
           
             <h2 id="section-<%=k%>"><%=term.get(k-1).getCterm() %></h2>
-			<table class="table" style="table-layout:fixed;">
+			<table class="table table-striped" style="table-layout:fixed;">
 				<thead>
 					<tr>
 						<th>

@@ -219,7 +219,7 @@
 	
 	
 	<task:scheduled-tasks>
-		<task:scheduled ref="taskJob" method="job1" cron="0 56 21 * * ?" />
+		<task:scheduled ref="taskJob" method="job1" cron="0 58 21 * * ?" />
 	</task:scheduled-tasks>
 
 	<!-- 定义 Autowired 自动注入 bean -->

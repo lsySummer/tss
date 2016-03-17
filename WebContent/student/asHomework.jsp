@@ -88,7 +88,7 @@ int leftAs=(int)request.getAttribute("leftAs");
 			
 			<script type="text/javascript">
 			if(<%=leftHw%>!=0){
-			document.write('<div class="alert alert-warning alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 注意！有<%=leftHw%>个作业学生已提交！有<%=leftAs%>个作业需要批改</div>');
+			document.write('<div class="alert alert-warning alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 注意！有<%=leftHw%>个作业已到学生提交ddl！有<%=leftAs%>个作业未到批改ddl</div>');
 			}
 			</script>
 			<s:form action="/student/giveScore" method="post" id="reqForm2" name="reqForm2">
@@ -103,7 +103,7 @@ int leftAs=(int)request.getAttribute("leftAs");
 							</tr>
 							<tr class="success">
 								<td>截止日期</td>
-								<td><s:property value="sddl" /></td>
+								<td><s:property value="addl" /></td>
 
 							</tr>
 							<tr>
