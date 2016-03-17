@@ -134,6 +134,10 @@
 			<result type="json"></result>
 		</action>
 
+		<action name="courseDownload" class="CourseDownload" method="download">
+			<result type="json"></result>
+		</action>
+
 		<action name="submitEg" class="SubmitEg">
 			<result type="json" name="success">
 				<param name="contentType">
@@ -168,7 +172,7 @@
 		<action name="fileDownload" class="FileDownload" method="download">
 			<result type="json"></result>
 		</action>
-
+		
 		<action name="hwDownload" class="HwDownload" method="hwdownload">
 			<result type="json"></result>
 		</action>
@@ -265,6 +269,22 @@
 			<result name="success">/student/score.jsp</result>
 		</action>
 
+	</package>
+	
+	<package name="tCharge" extends="struts-default" namespace="/tCharge">
+	
+	    <action name="stuSta" class="StuSta">  
+            <result>/tCharge/student.jsp</result>  
+        </action>  
+        
+        <action name="hwSta" class="HwSta">  
+            <result>/tCharge/homework.jsp</result>  
+        </action> 
+        
+        <action name="selectMonth" class="SelectMonth">  
+            <result>/tCharge/homework.jsp</result>  
+        </action> 
+        
 	</package>
 
 </struts>

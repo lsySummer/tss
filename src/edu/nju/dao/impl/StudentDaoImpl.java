@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,7 @@ public class StudentDaoImpl implements StudentDao{
 		int id = list.get(0).getId();
 		Showok c = (Showok)baseDao.load(Showok.class, id);
 		c.setHpath(path);
+		c.setState(1);
 		baseDao.update(c);
 		return "success";
 	}
@@ -96,8 +98,31 @@ public class StudentDaoImpl implements StudentDao{
 		Chowok ch = (Chowok)baseDao.load(Chowok.class, chid);
 		ch.setAssisSubmit(1);
 		ch.setIfpass(0);
+		String todayStr=todayDate();
+		String addl=ch.getAddl();
+		if(addl.compareTo(todayStr)>0){
+			ch.setIfOntime(1);
+		}
 		baseDao.update(ch);
 		return null;
+	}
+	
+	public String todayDate() {
+		Calendar cal = Calendar.getInstance();
+		int y = cal.get(Calendar.YEAR);
+		int m = cal.get(Calendar.MONTH) + 1;
+		int d = cal.get(Calendar.DATE);
+		String year = y + "";
+		String month = m + "";
+		String date = d + "";
+		if (m < 10) {
+			month = "0" + m;
+		}
+		if (d < 10) {
+			date = "0" + date;
+		}
+		String todayStr = year + " " + month + " " + date;
+		return todayStr;
 	}
 
 	@Override

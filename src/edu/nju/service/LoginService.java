@@ -1,7 +1,9 @@
 package edu.nju.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import edu.nju.model.ChartModel;
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Login;
@@ -26,4 +28,11 @@ public interface LoginService {
 	public List<Chowok> getChowokList(int cid);
 	public Teacher getSeeTeacher(int cid);
 	public Student getSeeStudent(int cid);
+	public List<Course> getCourseByMonth(int y,int m);
+	public int gethwNum(int cid,int month);
+	public int getAveScore(int cid,int month);
+	public float getPass(int cid,int month);
+	public float getOntime(int cid,int month);
+	public ArrayList<Integer> getSubmitNum(int cid,int month);
+	public ChartModel getChartModel(int cid,int month);
 }

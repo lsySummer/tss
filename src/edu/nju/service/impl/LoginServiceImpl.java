@@ -1,11 +1,13 @@
 package edu.nju.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.dao.LoginDao;
+import edu.nju.model.ChartModel;
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.model.Login;
@@ -98,6 +100,41 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public List<Term> getNowTerm() {
 		return loginDao.getNowTerm();
+	}
+
+	@Override
+	public List<Course> getCourseByMonth(int y,int m) {
+		return loginDao.getCourseByMonth(y,m);
+	}
+
+	@Override
+	public int gethwNum(int cid,int month) {
+		return loginDao.gethwNum(cid,month);
+	}
+
+	@Override
+	public int getAveScore(int cid,int month) {
+		return loginDao.getAveScore(cid,month);
+	}
+
+	@Override
+	public float getPass(int cid,int month) {
+		return loginDao.getPass(cid,month);
+	}
+
+	@Override
+	public float getOntime(int cid,int month) {
+		return loginDao.getOntime(cid,month);
+	}
+
+	@Override
+	public ArrayList<Integer> getSubmitNum(int cid, int month) {
+		return loginDao.getSubmitNum(cid, month);
+	}
+
+	@Override
+	public ChartModel getChartModel(int cid, int month) {
+		return loginDao.getChartModel(cid, month);
 	}
 
 }

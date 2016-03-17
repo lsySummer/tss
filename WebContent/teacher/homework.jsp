@@ -187,6 +187,7 @@
 						上传样例
 						</td>
 						<td>
+						<input type="hidden" id=<%="ifpass"+k%> value=<s:property value="ifpass" />>
 						<input type="hidden" id=<%="assidSubmit"+k%> value=<s:property value="assisSubmit" />>
 						 <img src="<%=request.getContextPath()%>/img/loading.gif" id='<%="loading"+k %>' style="display: none;"/>
 							<input type="text" size="20" name='<%="upfile"+k %>' id='<%="upfile"+k %>' style="border:1px dotted #ccc" readonly>  
@@ -203,10 +204,15 @@
 					<td>
 						<script type="text/javascript">
 						var ifSubmit = document.getElementById('<%="assidSubmit"+k%>').value;
-						if(ifSubmit==0){
-							document.write("<p>助教批改尚未完成</p>");
+						var ifPass = document.getElementById('<%="ifpass"+k%>').value;
+						if(ifPass==1){
+							document.write("<p>本次作业已审批通过</p>");
 						}else{
-							document.write("<p><b>助教批改完成，请审批</b></p>");
+							if(ifSubmit==0){
+								document.write("<p>助教批改尚未完成</p>");
+							}else{
+								document.write("<p><b>助教批改完成，请审批</b></p>");
+							}
 						}
 						</script>
 					</td>
@@ -232,7 +238,7 @@
 				<div class="modal-body">
 			
 				
-				<input type="hidden" name="acid" id="acid" value=<%=c.getId() %>>
+				<input type="hidden" name="acid" id="acid" value=<%=c.getId()%>>
 			<div style="float:left;width:300px;">
 				<span class="infoTxt" style="float:left;margin-top:1%;margin-left:16%">编号：</span>
 				<input type="text" id="ahid" name="ahid"
@@ -268,7 +274,7 @@
 				<span class="infoTxt" style="float:left;margin-top:1%;margin-left:3%">作业格式：</span>
 				<div style="float:left;width:130px;">
 					<select class="form-control" id="aformat" name="aformat"> 
-						<option value='word'>word</option> 
+						<option value='word'>docx</option> 
 						<option value='pdf'>pdf</option> 
 						<option value='txt'>txt</option> 
 						<option value='zip'>zip</option> 

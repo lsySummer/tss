@@ -173,6 +173,10 @@
 	<bean id="FileDownload" class="edu.nju.action.student.FileDownload">
 	</bean>
 
+	<bean id="CourseDownload" class="edu.nju.action.student.CourseDownload">
+	</bean>
+
+
 	<bean id="HwDownload" class="edu.nju.action.student.FileDownload">
 	</bean>
 
@@ -196,16 +200,26 @@
 
 	<bean id="outAction" class="edu.nju.action.ExcelTest">
 	</bean>
-	
-	
+
+
 	<bean id="SeeInfo" class="edu.nju.action.SeeInfo">
 	</bean>
-	
-		<bean id="SeeAInfo" class="edu.nju.action.SeeAInfo">
+
+	<bean id="SeeAInfo" class="edu.nju.action.SeeAInfo">
 	</bean>
 	
+	<bean id="StuSta" class="edu.nju.action.StuSta">
+	</bean>
+	
+	<bean id="HwSta" class="edu.nju.action.HwSta">
+	</bean>
+	
+		<bean id="SelectMonth" class="edu.nju.action.SelectMonth">
+	</bean>
+	
+	
 	<task:scheduled-tasks>
-		<task:scheduled ref="taskJob" method="job1" cron="0 13 22 * * ?" />
+		<task:scheduled ref="taskJob" method="job1" cron="0 56 21 * * ?" />
 	</task:scheduled-tasks>
 
 	<!-- 定义 Autowired 自动注入 bean -->

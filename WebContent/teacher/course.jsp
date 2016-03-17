@@ -17,6 +17,12 @@
 <script src="<%=request.getContextPath()%>/jquery/jquery-1.8.3.min.js"></script>
 
 <script type="text/javascript">
+  function ajaxSend(cname){
+	  location.href="courseDownload.action?cname="+cname;
+  }
+</script>
+
+<script type="text/javascript">
 	$(function() {
 		$("#tj")
 				.click(
@@ -276,6 +282,7 @@
 
 			<div style="width: 800px; float: left; margin-top: 1%">
 				<span class="infoTxt"><b>学期总结：</b></span> <span class="infoTxt">
+				<a id='clickDown' onclick="ajaxSend('<%=c.getCname()%>')">点击下载</a>
 					<script type="text/javascript">
 						var endDate = document.getElementById('endD').value;
 						var myDate = new Date();
@@ -285,9 +292,9 @@
 						var endtime = new Date(arrs[0], arrs[1] - 1, arrs[2]);
 						var endtimes = endtime.getTime();
 						if(endtimes<todaytimes){
-							document.write("学期总结已生成，并导出至E盘");
 						}else{
 							document.write("学期总结尚未生成");
+							document.getElementById('clickDown').innerHTML ="";
 						}
 					</script>
 				</span><br />

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	    <%@ taglib prefix="s" uri="/struts-tags"%>
+    <%@ page language="java" import="edu.nju.model.Course"%>
+      <%@ page language="java" import="edu.nju.model.ChartModel"%>
+    <%@ page language="java" import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,156 +13,140 @@
 <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-<script type="text/javascript" src="../jquery/jquery.js"></script>
-<script type="text/javascript" src="../js/jsapi.js"></script>
-	<script type="text/javascript" src="../js/corechart.js"></script>		
-	<script type="text/javascript" src="../js/jquery.gvChart-1.0.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.ba-resize.min.js"></script>
+<script src="../js/Chart.js"></script>
 
-<script type="text/javascript">
-gvChartInit();
-$(document).ready(function(){
-		$('#myTable5').gvChart({
-			chartType: 'PieChart',
-			gvSettings: {
-			vAxis: {title: 'No of players'},
-			hAxis: {title: 'Month'},
-			width: 400,
-			height: 250
-		}
-		
-	});
-});
-</script>
 
-<script type="text/javascript">
-gvChartInit();
-$(document).ready(function(){
-		$('#myTable1').gvChart({
-			chartType: 'PieChart',
-			gvSettings: {
-			vAxis: {title: 'No of players'},
-			hAxis: {title: 'Month'},
-			width: 400,
-			height: 250
-		}
-		
-	});
-});
-</script>
 </head>
 <body data-spy="scroll" data-target="#myScrollspy">
 
 	<div class="container">
-	<div class="jumbotron" style="height:130px;margin-top:-20px">
-		<h1 style="margin-top:-30px">Teaching Support System</h1>
-    </div>
-	<div class="navbar navbar-inverse">
-    <div class="navbar-header">
-      <!-- 自适应隐藏导航展开按钮 -->
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <!-- 导航条LOGO -->
-      <a class="navbar-brand" href="#">welcome，管理员</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li><a href="homework.jsp">课程作业情况</a></li>
-            <li class="active"><a href="student.html">学生情况</a></li>
-			
-			 
-        </ul>
-		
-	    <ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Link</a></li>      
-	    </ul>
-     </div>
-</div>
-</div>
+		<div class="jumbotron" style="height: 130px; margin-top: -20px">
+			<h1 style="margin-top: -30px">Teaching Support System</h1>
+		</div>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-header">
+				<!-- 自适应隐藏导航展开按钮 -->
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- 导航条LOGO -->
+				<a class="navbar-brand" href="#">welcome，教学负责人</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<s:form action="/tCharge/selectMonth" method="post" name='reqForm'>
+					<input type="hidden" name="sMonth" id="sMonth" value=3>
+				<ul class="nav navbar-nav">
+					<li><a href="javascript:document.reqForm.submit();">课程作业情况</a></li>
+					<li class="active"><a href="#">学生情况</a></li>
+				</ul>
+				</s:form>
+				<ul class="nav navbar-nav navbar-right">
+				<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a></li>    
+				</ul>
+			</div>
+		</div>
+	<% 
+	List<String> cnameList =(List<String>)request.getAttribute("cnameList");
+	%>
+	<script>
+		var cname=new Array();
+		var data=new Array();
+	</script>
+	<%List<ArrayList<Integer>> submitList = (List<ArrayList<Integer>>)request.getAttribute("submit");
+	List<ChartModel> modelList=(List<ChartModel>)request.getAttribute("chartList");
+	%>
+	<%for(int k=0;k<submitList.size();k++){
+		ArrayList<Integer> subArr = submitList.get(k);
+		for(int s=0;s<subArr.size();s++){
+		%>	
+		<script>
+		 data[<%=s%>] = '<%=subArr.get(s)%>';
+		 <%int ss=s+1;%>
+		 cname[<%=s%>] = '<%="作业"+ss%>';
+		</script>
+		<%} %>
+		<div style="float:left;margin-left:6%;width:90%">
+		<h2><%=cnameList.get(k) %></h2>
+			<div style="float:left;">
+			<h3>提交人数</h3>
+			<canvas id='<%="line"+k %>' width="550" height="250"></canvas>
+			</div>
+			<div style="float:left;margin-left:10%;">
+			<h3>分数情况</h3>
+			<%ChartModel model = modelList.get(k);%>
+			<canvas id='<%="area"+k %>' width="240" height="240"></canvas>
+			</div>
+		</div>
+		<script>
+	
+	var lineChartData = {
+			labels : cname,
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : data
+				}
+			]
 
-<div style="width:200px;height:250px;margin-left:8%;float:left;text-align:center">
-	<img style="width:100px;height:100px;margin-top:20%" src="../img/1.gif" />
-	<h3>J2EE与中间件</h3>
-</div>
+		};
+	
+	var pieData = [
+					{
+						value: <%=model.getL1()%>,
+						color:"#F7464A",
+						highlight: "#FF5A5E",
+						label: "<60"
+					},
+					{
+						value: <%=model.getL2()%>,
+						color: "#46BFBD",
+						highlight: "#5AD3D1",
+						label: "60-69"
+					},
+					{
+						value: <%=model.getL3()%>,
+						color: "#FDB45C",
+						highlight: "#FFC870",
+						label: "70-79"
+					},
+					{
+						value: <%=model.getL4()%>,
+						color: "#949FB1",
+						highlight: "#A8B3C5",
+						label: "80-89"
+					},
+					{
+						value: <%=model.getL5()%>,
+						color: "#4D5360",
+						highlight: "#616774",
+						label: "90-100"
+					}
 
-<div style="width:100px;float:left;margin-top:6%">
-		<form>
-			<select class="form-control" style="margin-top:8%"> 
-				<option>作业一</option> 
-				<option>作业二</option> 
-				<option>作业三</option> 
-				<option>作业四</option> 
-			</select>
-		</form>
-</div>
-<div style="width:250px;height:250px;margin-left:2%;float:left;">
-
-	   <table id='myTable5'>
-					<caption>作业提交<caption>
-			<thead>
-				<tr>
-					<th></th>
-					<th>已交</th>
-					<th>未交</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-					100
-					</td>
-					<td>
-					10
-					</td>
-					</tr>
-			</tbody>
-		</table>  
-		
-	</div>	
-	<div style="width:250px;height:250px;margin-left:5%;float:left;">
-
-	   <table id='myTable1'>
-					<caption>分数情况<caption>
-			<thead>
-				<tr>
-					<th></th>
-					<th>90-100</th>
-					<th>80-90</th>
-					<th>70-80</th>
-					<th>60-70</th>
-					<th><60</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-					10
-					</td>
-					<td>
-					20
-					</td>
-					<td>
-					25
-					</td>
-					<td>
-					15
-					</td>
-					<td>
-					10
-					</td>
-					</tr>
-			</tbody>
-		</table>  
-		
-	</div>	
+				];
+	
+	
+	
+	var ctx2 = document.getElementById('<%="line"+k %>').getContext("2d");
+	var myNewChart = new Chart(ctx2).Line(lineChartData);
+	
+	var ctx2 = document.getElementById('<%="area"+k %>').getContext("2d");
+	var myNewChart1 = new Chart(ctx2).Pie(pieData);
+	</script>
+		<%}; %>
+	</div>
 
 
-<script src="../js/bootstrap.js"></script>
+	<script src="../js/bootstrap.js"></script>
 
 </body>
 </html>

@@ -14,6 +14,15 @@ import javax.persistence.Table;
 public class Showok  implements Serializable{
 	@Id  
 	private int id; 
+	private int state;
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	public int getId(){
 		return id;
 	}
@@ -25,6 +34,13 @@ public class Showok  implements Serializable{
 	int hid;
 	int score;
 	int pScore;
+	public int getpScore() {
+		return pScore;
+	}
+
+	public void setpScore(int pScore) {
+		this.pScore = pScore;
+	}
 	String hpath;
 	public String getHpath() {
 		return hpath;
@@ -34,13 +50,6 @@ public class Showok  implements Serializable{
 		this.hpath = hpath;
 	}
 
-	public int getpScore() {
-		return pScore;
-	}
-
-	public void setpScore(int pScore) {
-		this.pScore = pScore;
-	}
 	String review;
 	public int getScore() {
 		return score;

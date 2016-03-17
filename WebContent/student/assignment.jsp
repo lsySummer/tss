@@ -30,7 +30,7 @@
     	var upName=document.getElementById(upFile).value;
     	var strs = new Array();
     	strs = upName.split(".");
-    	if(strs[1]==format){
+    	if(strs[1]==format||format=='不限制'){
     		$(document)
             .ajaxStart(function(){
                 $("#"+loading).show();

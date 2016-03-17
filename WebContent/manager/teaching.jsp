@@ -107,24 +107,30 @@
 						<li class="active"><a>教学管理</a></li>
 					</ul>
 				</s:form>
- <ul class="nav navbar-nav navbar-right">
-			<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a></li>      
-	    </ul>
-		
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="<%=request.getContextPath()%>/main/main.jsp">退出登陆</a></li>
+				</ul>
+
 			</div>
 		</div>
 	</div>
 	<div style="margin: 1% 10%; height: 550px;">
 		<div class="common" style="margin-left: 6%">
 			<s:form action="manager/byTerm" method="post">
-				<select class="form-control" name="termSelect" onchange="submit();" id="termSelect"
-					style="margin-top: 1%; width: 150px; float: left">
+				<select class="form-control" name="termSelect" onchange="submit();"
+					id="termSelect" style="margin-top: 1%; width: 150px; float: left">
 					<option value=0>全部</option>
 					<s:iterator value="#request.termList">
-						<option value='<s:property value="cterm" />'><s:property value="cterm" /></option>
+						<option value='<s:property value="cterm" />'><s:property
+								value="cterm" /></option>
 					</s:iterator>
 				</select>
 			</s:form>
+
+			<script type="text/javascript">
+			var termS = "${requestScope.termSelect}";
+			document.getElementById('termSelect').value=termS;
+			</script>
 		</div>
 		<a id="modal3" data-target="#myModal2" role="button"
 			class="btn btn-default" data-toggle="modal" style="margin: 1% 3%">新增学期</a>
@@ -133,49 +139,50 @@
 		</br>
 
 		<s:iterator value="#request.courseList" id='clist'>
-			<input type="hidden" id="mcourseId" name="mcourseId"/>
+			<input type="hidden" id="mcourseId" name="mcourseId" />
 			<div class="courseblock">
 				<div class="courseInfo">Course Infomation</div>
 				<div style="width: 150px; float: left;">
 					<img src="<%=request.getContextPath()%>/img/0.jpg"
 						style="width: 100px; height: 100px; margin: 15%" />
 				</div>
-				<div
-					style="width: 700px; float: left; margin-left: 2%; ">
+				<div style="width: 700px; float: left; margin-left: 2%;">
 					<div class="courseline">
-						<span class="infoTxt"><b>编号：</b></span> 
-						<span class="infoTxt"><s:property value="cid" /></span>
+						<span class="infoTxt"><b>编号：</b></span> <span class="infoTxt"><s:property
+								value="cid" /></span>
 					</div>
 					<div class="courseline">
-						<span class="infoTxt"><b>学期：</b></span>
-						<span class="infoTxt" ><s:property value="term" /></span>
+						<span class="infoTxt"><b>学期：</b></span> <span class="infoTxt"><s:property
+								value="term" /></span>
 					</div>
 					<div class="courseline">
-						<span class="infoTxt"><b>课程：</b></span> 
-						<span class="infoTxt" ><s:property value="cname" /></span>
+						<span class="infoTxt"><b>课程：</b></span> <span class="infoTxt"><s:property
+								value="cname" /></span>
 					</div>
 					<div class="courseline">
-						<span class="infoTxt"><b>教师：</b></span>
-						<span class="infoTxt" ><s:property value="tname" /></span>
+						<span class="infoTxt"><b>教师：</b></span> <span class="infoTxt"><s:property
+								value="tname" /></span>
 					</div>
 					<div class="courseline">
-						<span class="infoTxt""><b>开课：</b></span>
-					<span class="infoTxt" ><s:property value="startDate" /></span>
+						<span class="infoTxt""><b>开课：</b></span> <span class="infoTxt"><s:property
+								value="startDate" /></span>
 					</div>
 					<div class="courseline">
-						<span class="infoTxt"><b>结课：</b></span>
-						<span class="infoTxt" ><s:property value="endDate" /></span>
+						<span class="infoTxt"><b>结课：</b></span> <span class="infoTxt"><s:property
+								value="endDate" /></span>
 					</div>
-					<div class="courseline" style="margin-left:30%;margin-top:2%">
-						<button class="btn" type="button"  data-toggle='modal'
-							data-target='#myModal' onclick="setValue(<s:property value="id" />)">删除</button>
-						<button class="btn btn-primary" type="submit" 
+					<div class="courseline" style="margin-left: 30%; margin-top: 2%">
+						<button class="btn" type="button" data-toggle='modal'
+							data-target='#myModal'
+							onclick="setValue(<s:property value="id" />)">删除</button>
+						<button class="btn btn-primary" type="submit"
 							style="margin-left: 30%" data-toggle='modal'
-							data-target='#myModal4' onclick="modify(<s:property value="id" />,'<s:property value="cid" />','<s:property value="term" />','<s:property value="cname" />','<s:property value="tname" />','<s:property value="startDate" />','<s:property value="endDate" />')">修改</button>
+							data-target='#myModal4'
+							onclick="modify(<s:property value="id" />,'<s:property value="cid" />','<s:property value="term" />','<s:property value="cname" />','<s:property value="tname" />','<s:property value="startDate" />','<s:property value="endDate" />')">修改</button>
 					</div>
 				</div>
 			</div>
-	
+
 		</s:iterator>
 	</div>
 
@@ -213,10 +220,11 @@
 		<!-- /.modal-fade -->
 	</s:form>
 
-	<s:form class="form-horizontal" action="/manager/deleteCourse" method="post">
+	<s:form class="form-horizontal" action="/manager/deleteCourse"
+		method="post">
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
-				<input type="hidden" id="courseId" name="courseId"/>
+			<input type="hidden" id="courseId" name="courseId" />
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -235,7 +243,7 @@
 		</div>
 		<!-- /.modal-fade -->
 	</s:form>
-	
+
 	<s:form class="form-horizontal" id="modifyCourse"
 		action="/manager/modifyCourse" method="post">
 		<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
@@ -249,75 +257,74 @@
 					</div>
 					<div class="modal-body">
 
-					<div class="modalline">
-						<span class="infoTxt"><b>编号：</b></span> 
-						<span class="infoTxt" id="mcid"></span>
-					</div>
-					<div class="modalline" style="margin-left:10%">
-						<span class="infoTxt"><b>学期：</b></span>
-						<span class="infoTxt"  id="mterm"><s:property value="term" /></span>
-					</div>
-					
-					<div class="modalline">
-						<span class="infoTxt"><b>课程：</b></span> 
-							<input
-							type="text" id="mcname" name="mcname"
-							style="border: 0; border-bottom: thin solid; outline: none; width: 125px"></input>
+						<div class="modalline">
+							<span class="infoTxt"><b>编号：</b></span> <span class="infoTxt"
+								id="mcid"></span>
+						</div>
+						<div class="modalline" style="margin-left: 10%">
+							<span class="infoTxt"><b>学期：</b></span> <span class="infoTxt"
+								id="mterm"><s:property value="term" /></span>
+						</div>
 
-					</div>
+						<div class="modalline">
+							<span class="infoTxt"><b>课程：</b></span> <input type="text"
+								id="mcname" name="mcname"
+								style="border: 0; border-bottom: thin solid; outline: none; width: 125px"></input>
 
-					<div class="modalrline">
+						</div>
+
+						<div class="modalrline">
 							<span class="infoTxt"
-							style="float: left; margin-top: 1%; margin-left: 3%"><b>开课日期：</b></span>
-						<div class="input-group date form_date col-md-5" data-date=""
-							data-date-format="yyyy MM dd" data-link-field="dtp_input2"
-							data-link-format="yyyy-mm-dd" style="width: 200px;">
-							<input class="form-control" size="16" type="text"
-								name="mbeginDate" id="mbeginDate" readonly> <span
-								class="input-group-addon"><span
-								class="glyphicon glyphicon-remove"></span></span> <span
-								class="input-group-addon"><span
-								class="glyphicon glyphicon-calendar"></span></span>
+								style="float: left; margin-top: 1%; margin-left: 3%"><b>开课日期：</b></span>
+							<div class="input-group date form_date col-md-5" data-date=""
+								data-date-format="yyyy MM dd" data-link-field="dtp_input2"
+								data-link-format="yyyy-mm-dd" style="width: 200px;">
+								<input class="form-control" size="16" type="text"
+									name="mbeginDate" id="mbeginDate" readonly> <span
+									class="input-group-addon"><span
+									class="glyphicon glyphicon-remove"></span></span> <span
+									class="input-group-addon"><span
+									class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input2" value="" />
 						</div>
-						<input type="hidden" id="dtp_input2" value="" />
-					</div>
-					<div class="modalline">
-						<span class="infoTxt"
-							style="float: left; margin-top: 1%;"><b>教师：</b></span>
-						<div style="float: left; width: 135px;">
-							<select class="form-control" id="mteacher" name="mteacher">
-								<s:iterator value="#request.teaList">
-									<option><s:property value="username" /></option>
-								</s:iterator>
-							</select>
+						<div class="modalline">
+							<span class="infoTxt" style="float: left; margin-top: 1%;"><b>教师：</b></span>
+							<div style="float: left; width: 135px;">
+								<select class="form-control" id="mteacher" name="mteacher">
+									<s:iterator value="#request.teaList">
+										<option><s:property value="username" /></option>
+									</s:iterator>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="modalrline">
-						<span class="infoTxt"
-							style="float: left; margin-top: 1%; margin-left: 3%"><b>结课日期：</b></span>
-						<div class="input-group date form_date col-md-5" data-date=""
-							data-date-format="yyyy MM dd" data-link-field="dtp_input2"
-							data-link-format="yyyy-mm-dd" style="width: 200px;">
-							<input class="form-control" size="16" type="text" name="mendDate"
-								id="mendDate" readonly> <span class="input-group-addon"><span
-								class="glyphicon glyphicon-remove"></span></span> <span
-								class="input-group-addon"><span
-								class="glyphicon glyphicon-calendar"></span></span>
+						<div class="modalrline">
+							<span class="infoTxt"
+								style="float: left; margin-top: 1%; margin-left: 3%"><b>结课日期：</b></span>
+							<div class="input-group date form_date col-md-5" data-date=""
+								data-date-format="yyyy MM dd" data-link-field="dtp_input2"
+								data-link-format="yyyy-mm-dd" style="width: 200px;">
+								<input class="form-control" size="16" type="text"
+									name="mendDate" id="mendDate" readonly> <span
+									class="input-group-addon"><span
+									class="glyphicon glyphicon-remove"></span></span> <span
+									class="input-group-addon"><span
+									class="glyphicon glyphicon-calendar"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input2" value="" />
 						</div>
-						<input type="hidden" id="dtp_input2" value="" />
-					</div>
 
 
 
 
 					</div>
 					<div class="modal-footer">
-					<div class="modalline" style="margin-left:20%">
-						<button type="button" class="btn btn-default" data-dismiss="modal">取消
-						</button>
-						<button type="submit" class="btn btn-primary"
-							 style="margin-left:30%">确定</button>
-					</div>
+						<div class="modalline" style="margin-left: 20%">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+							<button type="submit" class="btn btn-primary"
+								style="margin-left: 30%">确定</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -349,8 +356,7 @@
 						<span class="infoTxt" style="margin-left: 6%">课程名：</span> <input
 							type="text" id="cname" name="cname"
 							style="border: 0; border-bottom: thin solid; outline: none; width: 125px"></input><br />
-						<br />
-						<br /> <span class="infoTxt"
+						<br /> <br /> <span class="infoTxt"
 							style="float: left; margin-top: 1%; margin-left: 3%">学期：</span>
 						<div style="float: left; width: 135px;">
 							<select class="form-control" id="term" name="term">
@@ -371,8 +377,8 @@
 								class="input-group-addon"><span
 								class="glyphicon glyphicon-calendar"></span></span>
 						</div>
-						<input type="hidden" id="dtp_input2" value="" /><br />
-						<br /> <span class="infoTxt"
+						<input type="hidden" id="dtp_input2" value="" /><br /> <br /> <span
+							class="infoTxt"
 							style="float: left; margin-top: 1%; margin-left: 3%">教师：</span>
 						<div style="float: left; width: 135px;">
 							<select class="form-control" id="teacher" name="teacher">
@@ -392,8 +398,7 @@
 								class="input-group-addon"><span
 								class="glyphicon glyphicon-calendar"></span></span>
 						</div>
-						<input type="hidden" id="dtp_input2" value="" /><br /> <br />
-						<br />
+						<input type="hidden" id="dtp_input2" value="" /><br /> <br /> <br />
 
 
 
@@ -431,9 +436,6 @@
 			forceParse : 0
 		});
 	</script>
-<script type="text/javascript">
-var termS = "${requestScope.termSelect}";
-	document.getElementById('termSelect').value=termS;
-</script>
+
 </body>
 </html>

@@ -87,7 +87,7 @@
 			<a href="javascript:document.reqForm.submit();" onclick="setForm(1)">我的课程</a> <span class="divider">/</span>
 		</li>
 		<li>
-			<a href="javascript:document.reqForm.submit();" onclick="setForm(2)"><%=c.getCname() %>></a><span class="divider">/</span>
+			<a href="javascript:document.reqForm.submit();" onclick="setForm(2)"><%=c.getCname() %></a><span class="divider">/</span>
 		</li>
 		<li class="active">
 			审核助教审批

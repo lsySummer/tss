@@ -9,22 +9,26 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.util.ServletContextAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
 import edu.nju.model.Chowok;
 import edu.nju.model.Course;
 import edu.nju.service.LoginService;
 
 @Service
-public class TaskJob extends BaseAction{
+public class TaskJob extends BaseAction  implements ServletContextAware{
 	@Autowired
 	LoginService loginService;
 	public void job1() {
@@ -36,8 +40,11 @@ public class TaskJob extends BaseAction{
 			if(c.getEndDate().compareTo(todayStr)==0){
 				int cid = c.getId();
 				List<Chowok> chList = loginService.getChowokList(cid);
-				String excelPath="E:/"+c.getCname()+"."+"xls";
-				System.out.println(fileExist(excelPath));
+				WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+				ServletContext servletContext = webApplicationContext.getServletContext();
+				String path = servletContext.getRealPath("/course");
+				String excelPath=path+"//"+c.getCname()+"."+"xls";
+				System.out.println(excelPath+fileExist(excelPath));
 				String title[] = { "hid", "sddl", "addl","format","score","dif","info", "comment"};
 				createExcel(excelPath, "sheet1", title);
 				System.out.println(sheetExist(excelPath, "sheet1"));

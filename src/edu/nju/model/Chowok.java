@@ -20,7 +20,25 @@ public class Chowok  implements Serializable{
 	private int failTime;
 	private int ifpass;
 	private int assisSubmit;
+	private int ifOntime;
+	private int month;
 	
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getIfOntime() {
+		return ifOntime;
+	}
+
+	public void setIfOntime(int ifOntime) {
+		this.ifOntime = ifOntime;
+	}
+
 	public int getAssisSubmit() {
 		return assisSubmit;
 	}

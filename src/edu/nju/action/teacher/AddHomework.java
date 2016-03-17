@@ -1,5 +1,6 @@
 package edu.nju.action.teacher;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import edu.nju.service.TeacherService;
 public class AddHomework extends BaseAction {
 	@Autowired
 	TeacherService teacherService;
-	
+
 	private String acid;
 	private String ahid;
 	private String ascore;
@@ -23,20 +24,22 @@ public class AddHomework extends BaseAction {
 	private String aaddl;
 	private String aformat;
 	private String ainfo;
-	
 
-	public String addHomework(){
+	public String addHomework() {
+		Calendar cal = Calendar.getInstance();
+		int y = cal.get(Calendar.YEAR);
+		int m = cal.get(Calendar.MONTH) + 1;
 		request.setAttribute("username", session.get("username"));
 		request.setAttribute("tuser", session.get("tuser"));
-		ahid=request.getParameter("ahid");
+		ahid = request.getParameter("ahid");
 		acid = request.getParameter("acid");
-		ascore=request.getParameter("ascore");
+		ascore = request.getParameter("ascore");
 		adif = request.getParameter("adif");
-		asddl=request.getParameter("asddl");
+		asddl = request.getParameter("asddl");
 		aaddl = request.getParameter("aaddl");
-		aformat=request.getParameter("aformat");
+		aformat = request.getParameter("aformat");
 		ainfo = request.getParameter("ainfo");
-		System.out.println("ainfo"+ainfo);
+		System.out.println("ainfo" + ainfo);
 		Chowok ch = new Chowok();
 		ch.setAddl(aaddl);
 		ch.setSddl(asddl);
@@ -46,14 +49,15 @@ public class AddHomework extends BaseAction {
 		ch.setScore(Integer.parseInt(ascore));
 		ch.setFormat(aformat);
 		ch.setHid(Integer.parseInt(ahid));
+		ch.setMonth(m);
 		teacherService.addHomework(ch);
-		int hid = teacherService.addShowok(ch);//作业id
+		int hid = teacherService.addShowok(ch);// 作业id
 		List<Cselect> sList = teacherService.getselectList(Integer.parseInt(acid));
-		System.out.println("sListsizt"+sList.size());
-		for(int i=0;i<sList.size();i++){
-			String sid= sList.get(i).getSid();
-			System.out.println("insertShowok"+sid+" "+hid);
-			teacherService.insertShowok(sid,hid);
+		System.out.println("sListsizt" + sList.size());
+		for (int i = 0; i < sList.size(); i++) {
+			String sid = sList.get(i).getSid();
+			System.out.println("insertShowok" + sid + " " + hid);
+			teacherService.insertShowok(sid, hid);
 		}
 		return SUCCESS;
 	}
